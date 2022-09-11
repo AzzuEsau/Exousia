@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Scene_Manager : MonoBehaviour
 {
     // Redirects to the scene of the game
     public void LoadGame()
@@ -19,6 +19,11 @@ public class NewBehaviourScript : MonoBehaviour
     public void LoadControls()
     {
         SceneManager.LoadScene("Controls");
+    }
+
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene("Credits");
     }
 
     public void QuitGame()
