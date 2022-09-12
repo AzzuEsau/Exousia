@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Scene_Manager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     // Redirects to the scene of the game
     public void LoadGame()
