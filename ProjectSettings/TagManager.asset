@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3377499529
+    locked: 0
+  - name: Plataformas
+    uniqueID: 2931941727
+    locked: 0
+  - name: Checkpoint
+    uniqueID: 3557082943
+    locked: 0
