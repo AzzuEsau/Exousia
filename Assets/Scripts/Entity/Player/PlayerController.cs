@@ -44,7 +44,7 @@ public class PlayerController {
     #endregion
     
     #region STATICS
-        private static float _waitTime = 0.12f;
+        // private static float waitTime = 0.12f;
 
         [Header ("Gravity")]
             private static float gravityScale;
