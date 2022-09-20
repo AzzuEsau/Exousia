@@ -106,7 +106,7 @@ public class PlayerController {
 
     #region RUN
         //make the movement positive and compare it with 0 Epsilon
-        private bool IsRunning() => Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
+        public bool IsRunning() => Mathf.Abs(rigidbody2D.velocity.x) > Mathf.Epsilon;
 
         // private void FlipSprite()
         // {
