@@ -50,3 +50,6 @@ TagManager:
   - name: Checkpoint
     uniqueID: 3557082943
     locked: 0
+  - name: Player
+    uniqueID: 2641804899
+    locked: 0
