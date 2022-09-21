@@ -7,9 +7,10 @@ public class PlayerController : Entity {
         [Header ("Layers")]
             [SerializeField] private LayerMask groundLayer;
 
-        [Header ("External Componetns")]
+        [Header ("External Components")]
             private Rigidbody2D rb2D;
             private BoxCollider2D floorCollider;
+            private Collider2D collider;
     #endregion
 
     #region VARIABLES
@@ -46,14 +47,22 @@ public class PlayerController : Entity {
 
         [Header ("Gravity")]
             private static float gravityScale;
-            private static float fallMultipier = 1.5f;
+            private static float fallMultipier = 1.8f;
+            private static float waitTime = 0.12f;
     #endregion
 
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        collider = GetComponent<BoxCollider2D>();
+        floorCollider = collidersGameObject.GetComponent<BoxCollider2D>();
         
 
+        // Assign the limit time to wait
+        waitCoyoteTime = waitTime;
+        waitJumpBufferTime = waitTime;
+        waitJumpChanged = waitTime;
+        jumpChangedCounter = waitJumpChanged;
 
         movementSpeed = 10;
         jumpForce = 10;
