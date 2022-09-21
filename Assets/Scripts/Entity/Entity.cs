@@ -5,7 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     protected float life;
-    protected float movementSpeed;
+    [SerializeField] protected float movementSpeed;
     protected float exp;
-    
+
 }

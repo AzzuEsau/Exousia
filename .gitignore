@@ -2,3 +2,5 @@ Logs/**
 Temp/**
 .vscode/**
 Library/**
+*.csproj
+*.sln
