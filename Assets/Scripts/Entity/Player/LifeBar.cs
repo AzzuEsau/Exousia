@@ -22,7 +22,6 @@ public class LifeBar : MonoBehaviour
         {
             hearts[i] = lifeBar.transform.GetChild(i).gameObject;
         }
-        // heart1.SetActive(false);
     }
 
     // Update is called once per frame
