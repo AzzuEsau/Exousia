@@ -5,28 +5,48 @@ using UnityEngine.InputSystem;
 
 public class Player : Entity
 {
-    // Rigidbody2D rb2D;
-    // PlayerController playerController;
 
-    // // Start is called before the first frame update
-    // void Start()
-    // {
-    //     rb2D = GetComponent<Rigidbody2D>();
-    //     playerController = new PlayerController(movementSpeed, rb2D);
-    // }
+    #region COMPONENTS
+        [Header ("General")]
+            [SerializeField] protected PlayerInput playerInput;
+            [SerializeField] protected Rigidbody2D rgBody;
 
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     playerController.Main(true);
-    //     playerController.IsRunning();
-    // }
+        [Header ("Colliders")]
+            [SerializeField] protected CapsuleCollider2D mainCollider;
+            [SerializeField] protected BoxCollider2D floorColliderDetector;
 
-    // public void OnMove(InputAction.CallbackContext value){
-    //     PlayerController.OnMove(ref value);
-    // }
+        [Header ("Render")]
+            [SerializeField] protected SpriteRenderer render;
+            [SerializeField] protected Animator animator;
 
-    // public void OnJump(InputAction.CallbackContext value){
-    //     PlayerController.OnJump(ref value);
-    // }
+        [Header ("Layers")]
+            [SerializeField] protected LayerMask groundLayer;
+    #endregion
+            [SerializeField] protected PlayerController playerController;
+
+    #region ATTRIBUTES
+
+
+
+
+    #endregion
+
+    private void Awake() {
+
+        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.movementSpeed = 6f;
+        playerController.AssignElements(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
+        // playerController = gameObject.AddComponent<PlayerController>(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
+    }
+
+    // Update is called once per frame 
+    void Update()
+    {
+
+    }
 }

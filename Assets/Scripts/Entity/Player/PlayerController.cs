@@ -1,132 +1,83 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : Entity {
+public class PlayerController : MonoBehaviour{
     #region SETABLES
-        
-        [Header ("Layers")]
-            [SerializeField] private LayerMask groundLayer;
-
         [Header ("External Components")]
-            private Rigidbody2D rb2D;
-            private BoxCollider2D floorCollider;
-            private Collider2D collider;
+            [SerializeField] protected Rigidbody2D rgBody;
     #endregion
 
     #region VARIABLES
-        #region SERIALIZABLES
+            [Header ("Movement")]
+                [SerializeField] protected float movementSpeed;
+
             [Header ("Jump")]
-                [SerializeField] private float jumpForce;
-                [SerializeField] private GameObject collidersGameObject;
-        #endregion
+                [SerializeField] protected float jumpForce = 15f;
+                [SerializeField] protected LayerMask groundLayer;
+                [SerializeField] protected BoxCollider2D floorCollider;
 
-        #region PRIVATED
             [Header ("Input")]
-                private Vector2 moveInput;
-                private bool jumpingInput; 
-
+                [SerializeField] protected Vector2 moveInput;
+                [SerializeField] protected bool jumpingInput; 
 
             [Header ("Last Jumped")]
-                private float waitJumpChanged;
-                private float jumpChangedCounter;
+                [SerializeField] protected float waitJumpChanged;
+                [SerializeField] protected float jumpChangedCounter;
 
             [Header ("Coyote Time")]
-                private float waitCoyoteTime;
-                private float  coyoteTimeCounter;
+                [SerializeField] protected float waitCoyoteTime;
+                [SerializeField] protected float  coyoteTimeCounter;
         
             [Header ("JumpingBuffer")]
-                private float waitJumpBufferTime;
-                private float jumpBufferTimeCounter;
-
-
-        #endregion
+                [SerializeField] protected float waitJumpBufferTime;
+                [SerializeField] protected float jumpBufferTimeCounter;
     #endregion
     
     #region STATICS
-        // private static float waitTime = 0.12f;
-
         [Header ("Gravity")]
-            private static float gravityScale;
-            private static float fallMultipier = 1.8f;
-            private static float waitTime = 0.12f;
+            [SerializeField] protected static float gravityScale;
+            [SerializeField] protected static float fallMultipier = 1.8f;
+            [SerializeField] protected static float waitTime = 0.12f;
     #endregion
 
-    void Start()
+    public void AssignElements(ref Rigidbody2D rgBody, ref LayerMask groundLayer, ref BoxCollider2D floorCollider, float movementSpeed)
     {
-        rb2D = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
-        floorCollider = collidersGameObject.GetComponent<BoxCollider2D>();
-        
+        this.rgBody = rgBody;
+        this.groundLayer = groundLayer;
+        this.floorCollider = floorCollider;
+        this.movementSpeed = movementSpeed;
 
-        // Assign the limit time to wait
-        waitCoyoteTime = waitTime;
-        waitJumpBufferTime = waitTime;
-        waitJumpChanged = waitTime;
-        jumpChangedCounter = waitJumpChanged;
-
-        movementSpeed = 10;
-        jumpForce = 10;
-        gravityScale = rb2D.gravityScale;
+        Debug.Log(this.movementSpeed);
     }
 
-    void Update()
+
+
+    public void Update() 
     {
-        Main(true);
-        IsRunning();
+        // if(!isAlive)
+        //     return;
+        Execute();
     }
 
-    #region MAIN
-        public void Main(bool isAlive) 
-        {
-            if(!isAlive)
-                return;
-            Execute();
-        }
-
-        private void Execute()
-        {
-            Run();
-            Gravity();
-            Jump();
-        }
-    #endregion
-
-
-
+    private void Execute()
+    {
+        Run();
+        Gravity();
+        Jump();
+    }
 
     #region KEY_DETECTION
         // Get the movement input value, this method runs in his thread
-        public void OnMove(InputAction.CallbackContext value) { 
-            moveInput = value.ReadValue<Vector2>();
-            Debug.Log(value.ReadValue<Vector2>());
-        }
+        public void OnMove(InputAction.CallbackContext value) => moveInput = value.ReadValue<Vector2>();
 
         // Get the boolean if the button is pressed
-        public void OnJump(InputAction.CallbackContext value) {
-            jumpingInput = value.ReadValueAsButton();
-            Debug.Log(value.ReadValueAsButton());
-        }
+        public void OnJump (InputAction.CallbackContext value) => jumpingInput = value.ReadValueAsButton();
     #endregion
 
-    #region COLLISION_DETECTION
-        private bool IsGrounded () => floorCollider.IsTouchingLayers(groundLayer);
-    #endregion
-
-    #region GRAVITY
-        private void Gravity()
-        {
-            // Increase the gravity to jump less if the player isn't pressing the jump button
-            if (rb2D.velocity.y > 0 && !jumpingInput)
-                rb2D.gravityScale = gravityScale * (fallMultipier);
-            // Set the gravity as normal
-            else
-                rb2D.gravityScale = gravityScale;
-        }
-    #endregion
 
     #region RUN
         //make the movement positive and compare it with 0 Epsilon
-        public bool IsRunning() => Mathf.Abs(rb2D.velocity.x) > Mathf.Epsilon;
+        public bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
 
         // private void FlipSprite()
         // {
@@ -138,13 +89,97 @@ public class PlayerController : Entity {
         private void Run()
         {
             // Use the values getted in the function OnMove from the Input System
-            Vector2 _playerVelocity = new Vector2(moveInput.x * movementSpeed, rb2D.velocity.y);
-            rb2D.velocity = _playerVelocity;
+            Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
+
+            Debug.Log("run: " + this.movementSpeed + " velocity: " + playerVelocity);
+            Debug.Log(moveInput);
+
+            // if(moveInput.x != 0 && moveInput.y != 0)
+
+            rgBody.velocity = playerVelocity;
 
             // // Activate the animation changin the boolean
             // _animator.SetBool("isRunning", IsRunning());
         }
     #endregion
+
+
+    // void Update()
+    // {
+    //     Main(true);
+    //     IsRunning();
+    // }
+
+    // #region MAIN
+    //     public void Main(bool isAlive) 
+    //     {
+    //         if(!isAlive)
+    //             return;
+    //         Execute();
+    //     }
+
+    //     private void Execute()
+    //     {
+    //         Run();
+    //         Gravity();
+    //         Jump();
+    //     }
+    // #endregion
+
+
+
+
+    // #region KEY_DETECTION
+    //     // Get the movement input value, this method runs in his thread
+    //     public void OnMove(InputAction.CallbackContext value) { 
+    //         moveInput = value.ReadValue<Vector2>();
+    //         Debug.Log(value.ReadValue<Vector2>());
+    //     }
+
+    //     // Get the boolean if the button is pressed
+    //     public void OnJump(InputAction.CallbackContext value) {
+    //         jumpingInput = value.ReadValueAsButton();
+    //         Debug.Log(value.ReadValueAsButton());
+    //     }
+    // #endregion
+
+    #region COLLISION_DETECTION
+        private bool IsGrounded () => floorCollider.IsTouchingLayers(groundLayer);
+    #endregion
+
+    #region GRAVITY
+        private void Gravity()
+        {
+            // Increase the gravity to jump less if the player isn't pressing the jump button
+            if (rgBody.velocity.y > 0 && !jumpingInput)
+                rgBody.gravityScale = gravityScale * (fallMultipier);
+            // Set the gravity as normal
+            else
+                rgBody.gravityScale = gravityScale;
+        }
+    #endregion
+
+    // #region RUN
+    //     //make the movement positive and compare it with 0 Epsilon
+    //     public bool IsRunning() => Mathf.Abs(rb2D.velocity.x) > Mathf.Epsilon;
+
+    //     // private void FlipSprite()
+    //     // {
+    //     //     if(IsRunning())
+    //     //         //Rotate de player using sign wich retur if the value is positive or negative
+    //     //         transform.localScale = new Vector2 (Mathf.Sign(_rg.velocity.x), 1f);
+    //     // }
+
+    //     private void Run()
+    //     {
+    //         // Use the values getted in the function OnMove from the Input System
+    //         Vector2 _playerVelocity = new Vector2(moveInput.x * movementSpeed, rb2D.velocity.y);
+    //         rb2D.velocity = _playerVelocity;
+
+    //         // // Activate the animation changin the boolean
+    //         // _animator.SetBool("isRunning", IsRunning());
+    //     }
+    // #endregion
 
     #region JUMP
         private void ResetJumps()
@@ -166,8 +201,8 @@ public class PlayerController : Entity {
                 jumpChangedCounter = 0f;
 
                 // Stop the current velocity and assign the new velocity using forces
-                rb2D.velocity = Vector2.up * 0;
-                rb2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                rgBody.velocity = Vector2.up * 0;
+                rgBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
         }
     #endregion
