@@ -2,3 +2,7 @@ Logs/**
 Temp/**
 .vscode/**
 Library/**
+Assembly-CSharp.csproj
+.vs\Exousia\v16\.suo
+obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache
+UserSettings\Layouts\default-2021.dwlt
