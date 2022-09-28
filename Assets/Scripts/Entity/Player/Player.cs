@@ -47,6 +47,6 @@ public class Player : Entity
     // Update is called once per frame 
     void Update()
     {
-
+        playerController.Execute(true);
     }
 }

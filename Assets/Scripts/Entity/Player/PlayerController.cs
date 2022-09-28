@@ -47,22 +47,21 @@ public class PlayerController : MonoBehaviour{
         this.floorCollider = floorCollider;
         this.movementSpeed = movementSpeed;
 
-        Debug.Log(this.movementSpeed);
+        gravityScale = rgBody.gravityScale;
+
+        waitJumpChanged = waitTime;
+        waitCoyoteTime = waitTime;
+        waitJumpBufferTime = waitTime;
     }
 
-
-
-    public void Update() 
+    public void Execute(bool isAlive)
     {
-        // if(!isAlive)
-        //     return;
-        Execute();
-    }
+        if(!isAlive)
+            return;
 
-    private void Execute()
-    {
         Run();
         Gravity();
+        ResetJumps();
         Jump();
     }
 
@@ -90,58 +89,12 @@ public class PlayerController : MonoBehaviour{
         {
             // Use the values getted in the function OnMove from the Input System
             Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
-
-            Debug.Log("run: " + this.movementSpeed + " velocity: " + playerVelocity);
-            Debug.Log(moveInput);
-
-            // if(moveInput.x != 0 && moveInput.y != 0)
-
             rgBody.velocity = playerVelocity;
 
             // // Activate the animation changin the boolean
             // _animator.SetBool("isRunning", IsRunning());
         }
     #endregion
-
-
-    // void Update()
-    // {
-    //     Main(true);
-    //     IsRunning();
-    // }
-
-    // #region MAIN
-    //     public void Main(bool isAlive) 
-    //     {
-    //         if(!isAlive)
-    //             return;
-    //         Execute();
-    //     }
-
-    //     private void Execute()
-    //     {
-    //         Run();
-    //         Gravity();
-    //         Jump();
-    //     }
-    // #endregion
-
-
-
-
-    // #region KEY_DETECTION
-    //     // Get the movement input value, this method runs in his thread
-    //     public void OnMove(InputAction.CallbackContext value) { 
-    //         moveInput = value.ReadValue<Vector2>();
-    //         Debug.Log(value.ReadValue<Vector2>());
-    //     }
-
-    //     // Get the boolean if the button is pressed
-    //     public void OnJump(InputAction.CallbackContext value) {
-    //         jumpingInput = value.ReadValueAsButton();
-    //         Debug.Log(value.ReadValueAsButton());
-    //     }
-    // #endregion
 
     #region COLLISION_DETECTION
         private bool IsGrounded () => floorCollider.IsTouchingLayers(groundLayer);
@@ -158,28 +111,6 @@ public class PlayerController : MonoBehaviour{
                 rgBody.gravityScale = gravityScale;
         }
     #endregion
-
-    // #region RUN
-    //     //make the movement positive and compare it with 0 Epsilon
-    //     public bool IsRunning() => Mathf.Abs(rb2D.velocity.x) > Mathf.Epsilon;
-
-    //     // private void FlipSprite()
-    //     // {
-    //     //     if(IsRunning())
-    //     //         //Rotate de player using sign wich retur if the value is positive or negative
-    //     //         transform.localScale = new Vector2 (Mathf.Sign(_rg.velocity.x), 1f);
-    //     // }
-
-    //     private void Run()
-    //     {
-    //         // Use the values getted in the function OnMove from the Input System
-    //         Vector2 _playerVelocity = new Vector2(moveInput.x * movementSpeed, rb2D.velocity.y);
-    //         rb2D.velocity = _playerVelocity;
-
-    //         // // Activate the animation changin the boolean
-    //         // _animator.SetBool("isRunning", IsRunning());
-    //     }
-    // #endregion
 
     #region JUMP
         private void ResetJumps()
@@ -206,5 +137,4 @@ public class PlayerController : MonoBehaviour{
             }
         }
     #endregion
-
 }
