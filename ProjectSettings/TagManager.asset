@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Canvas
   - Water
   - UI
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Checkpoint
     uniqueID: 3557082943
+    locked: 0
+  - name: Canvas
+    uniqueID: 2097218185
     locked: 0
