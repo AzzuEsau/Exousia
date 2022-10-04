@@ -4,40 +4,40 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour{
     #region SETABLES
         [Header ("External Components")]
-            [SerializeField] protected Rigidbody2D rgBody;
+            protected Rigidbody2D rgBody;
     #endregion
 
     #region VARIABLES
             [Header ("Movement")]
-                [SerializeField] protected float movementSpeed;
+                protected float movementSpeed;
 
             [Header ("Jump")]
-                [SerializeField] protected float jumpForce = 15f;
-                [SerializeField] protected LayerMask groundLayer;
-                [SerializeField] protected BoxCollider2D floorCollider;
+                protected float jumpForce = 15f;
+                protected LayerMask groundLayer;
+                protected BoxCollider2D floorCollider;
 
             [Header ("Input")]
-                [SerializeField] protected Vector2 moveInput;
-                [SerializeField] protected bool jumpingInput; 
+                protected Vector2 moveInput;
+                protected bool jumpingInput; 
 
             [Header ("Last Jumped")]
-                [SerializeField] protected float waitJumpChanged;
-                [SerializeField] protected float jumpChangedCounter;
+                protected float waitJumpChanged;
+                protected float jumpChangedCounter;
 
             [Header ("Coyote Time")]
-                [SerializeField] protected float waitCoyoteTime;
-                [SerializeField] protected float  coyoteTimeCounter;
+                protected float waitCoyoteTime;
+                protected float  coyoteTimeCounter;
         
             [Header ("JumpingBuffer")]
-                [SerializeField] protected float waitJumpBufferTime;
-                [SerializeField] protected float jumpBufferTimeCounter;
+                protected float waitJumpBufferTime;
+                protected float jumpBufferTimeCounter;
     #endregion
     
     #region STATICS
         [Header ("Gravity")]
-            [SerializeField] protected static float gravityScale;
-            [SerializeField] protected static float fallMultipier = 1.8f;
-            [SerializeField] protected static float waitTime = 0.12f;
+            protected static float gravityScale;
+            protected static float fallMultipier = 1.8f;
+            protected static float waitTime = 0.12f;
     #endregion
 
     public void AssignElements(ref Rigidbody2D rgBody, ref LayerMask groundLayer, ref BoxCollider2D floorCollider, float movementSpeed)
