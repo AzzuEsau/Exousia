@@ -78,21 +78,11 @@ public class PlayerController : MonoBehaviour{
         //make the movement positive and compare it with 0 Epsilon
         public bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
 
-        // private void FlipSprite()
-        // {
-        //     if(IsRunning())
-        //         //Rotate de player using sign wich retur if the value is positive or negative
-        //         transform.localScale = new Vector2 (Mathf.Sign(_rg.velocity.x), 1f);
-        // }
-
         private void Run()
         {
             // Use the values getted in the function OnMove from the Input System
             Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
             rgBody.velocity = playerVelocity;
-
-            // // Activate the animation changin the boolean
-            // _animator.SetBool("isRunning", IsRunning());
         }
     #endregion
 

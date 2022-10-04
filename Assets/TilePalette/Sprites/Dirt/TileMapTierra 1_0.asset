@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TileMapPiedras_0
+  m_Name: TileMapTierra 1_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -556469376, guid: 0e67d298a70d2414cbcdedea996d8f52, type: 3}
+  m_Sprite: {fileID: 1348706326, guid: 2f5316e1f3ac5d0458dccee1f2d9e92e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

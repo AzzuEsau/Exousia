@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e67d298a70d2414cbcdedea996d8f52
+guid: 5d9af8a1c6aa095489e5282afc48a1e6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -71,7 +71,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 0
+    compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -101,11 +101,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TileMapPiedras_0
+      name: TileMapPiedras 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +125,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 954e09dcec65ada48bdeddf9b080c695
-      internalID: -556469376
+      spriteID: 59b8d172e9b55114c9822efe465438e4
+      internalID: -11039689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapPiedras_1
+      name: TileMapPiedras 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,20 +146,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93fd2d9d8fdbd7942a8e0d3072416bb6
-      internalID: 322235576
+      spriteID: 48e33f31922440b4a9c3986c01572759
+      internalID: -444971497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapPiedras_2
+      name: TileMapPiedras 1_2
       rect:
         serializedVersion: 2
         x: 64
@@ -155,20 +167,62 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 367d6888841099f49b4ce2c40531b5f0
-      internalID: -1827455710
+      spriteID: 6fcb68ec968da0441bdf4b240713b01a
+      internalID: -1948946398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapPiedras_3
+      name: TileMapPiedras 1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c65a4cf441c734d931c3fafe3c81c9
+      internalID: -363322540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileMapPiedras 1_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e791680ba08d8e049a291d5662f06c52
+      internalID: 1514710135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileMapPiedras 1_5
       rect:
         serializedVersion: 2
         x: 0
@@ -176,20 +230,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38723da3993ca8c46a9f02587deb90a3
-      internalID: 1947187415
+      spriteID: 86a577e3a74296f4bbf363d9d6793974
+      internalID: 418673040
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapPiedras_4
+      name: TileMapPiedras 1_6
       rect:
         serializedVersion: 2
         x: 32
@@ -197,20 +251,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31709181d37e84c41a6204e216d6324b
-      internalID: -118551066
+      spriteID: 32a5485470065534ea04c5759274a9b3
+      internalID: 610723647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapPiedras_5
+      name: TileMapPiedras 1_7
       rect:
         serializedVersion: 2
         x: 64
@@ -218,14 +272,35 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fade48cb14ced1e4f97ad1c11d17d7be
-      internalID: 1059134896
+      spriteID: ac64d104091921f4ba9a956895271b8f
+      internalID: -275254828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TileMapPiedras 1_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ab41b9c69259934a9952d5cba2a2a51
+      internalID: -764953787
       vertices: []
       indices: 
       edges: []
@@ -241,12 +316,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TileMapPiedras_1: 322235576
-      TileMapPiedras_0: -556469376
-      TileMapPiedras_3: 1947187415
-      TileMapPiedras_5: 1059134896
-      TileMapPiedras_4: -118551066
-      TileMapPiedras_2: -1827455710
+      TileMapPiedras 1_5: 418673040
+      TileMapPiedras 1_4: 1514710135
+      TileMapPiedras 1_2: -1948946398
+      TileMapPiedras 1_7: -275254828
+      TileMapPiedras 1_1: -444971497
+      TileMapPiedras 1_6: 610723647
+      TileMapPiedras 1_0: -11039689
+      TileMapPiedras 1_8: -764953787
+      TileMapPiedras 1_3: -363322540
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -39,9 +39,8 @@ public class Player : Entity
     // Start is called before the first frame update
     void Start()
     {
-        this.movementSpeed = 6f;
+        this.movementSpeed = 7f;
         playerController.AssignElements(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
-        // playerController = gameObject.AddComponent<PlayerController>(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
     }
 
     // Update is called once per frame 
