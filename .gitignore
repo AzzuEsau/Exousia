@@ -2,6 +2,8 @@ Logs/**
 Temp/**
 .vscode/**
 Library/**
+*.csproj
+*.sln
 Assembly-CSharp.csproj
 .vs\Exousia\v16\.suo
 obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache

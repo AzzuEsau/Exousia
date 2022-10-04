@@ -36,7 +36,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\MenuManager.cs" />
+     <Compile Include="Assets\Scripts\Entity\Entity.cs" />
+     <Compile Include="Assets\Scripts\Login\Scr_Login.cs" />
+     <Compile Include="Assets\Scripts\Entity\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Entity\Player\LifeBar.cs" />
+     <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
+     <Compile Include="Assets\Scripts\Entity\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Entity\Enemy\Enemy.cs" />
     <Reference Include="UnityEngine">
         <HintPath>E:\Unity\Versions\2021.3.9f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
