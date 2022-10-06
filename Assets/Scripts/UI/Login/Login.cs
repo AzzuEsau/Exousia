@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
-public class Scr_Login : MonoBehaviour
+public class Login : MonoBehaviour
 {
     /* OBJECT OF REGISTER AND LOGIN */
     [SerializeField] private GameObject m_registerUI    = null;
@@ -21,23 +22,28 @@ public class Scr_Login : MonoBehaviour
     
     /* FIELDS OF LOGIN */
     [Header("Login")]
-    [SerializeField] private InputField mL_userNameInput         = null;
+    [SerializeField] private InputField mL_emailInput            = null;
     [SerializeField] private InputField mL_passwordInput         = null;
     [SerializeField] private Text mL_messageLabel                = null;
+    
+    
+    public Player user;
+    public Form formIssues;
+    public string userString;
 
-    // private voide Awake(){
-    //     m_networkManager = GameObject.findObjectOfType<NetworkManager>();
-    // }
 
     public void SubmitLogin(){
-        if(mL_userNameInput.text == "" || mL_passwordInput.text == ""){
+        if(mL_emailInput.text == "" || mL_passwordInput.text == ""){
             m_messageLabel.text = "El usuario o contraseña estan vacios";
             return;
         }
 
-        CheckUser(mL_userNameInput.text, mL_passwordInput.text, delegate(Response response){
-            if(response.message == "valid"){
-                SceneManager.LoadScene("Intro");
+        CheckUser(mL_emailInput.text, mL_passwordInput.text, delegate(Response response){
+            if(response.error == ""){
+                userString = response.player.Replace("'","\"");
+                PlayerPrefs.SetString("User", userString);
+                user = JsonUtility.FromJson<Player>(userString);
+                SceneManager.LoadScene("TestMap");
             }
             mL_messageLabel.text = response.message;
         });
@@ -51,7 +57,10 @@ public class Scr_Login : MonoBehaviour
 
         if(m_passwordInput.text == m_reEnterPasswordInput.text){
             CreateUser(m_userNameInput.text, m_emailInput.text, m_passwordInput.text, delegate(Response response){
-                m_messageLabel.text = response.message;
+                if(response.message == "Sign in sucessfully"){
+                   ShowLogin();
+                }
+                m_messageLabel.text = "Error: " + response.error;
             });
         }else{
             m_messageLabel.text = "Contraseñas diferentes";
@@ -78,32 +87,45 @@ public class Scr_Login : MonoBehaviour
 
     public IEnumerator CO_CreateUser(string userName, string email, string password, Action<Response> response){
         SecureForm form = new SecureForm();
-        form.secureForm.AddField("userName",userName);
+        form.secureForm.AddField("id",10);
+        form.secureForm.AddField("user",userName);
         form.secureForm.AddField("email",email);
         form.secureForm.AddField("password",password);
+        form.secureForm.AddField("token",password);
 
-        WWW w = new WWW("http://localhost/Exousia_DB/SignIn.php",form.secureForm);
+        UnityWebRequest web = UnityWebRequest.Post("http://localhost:8000/user/",form.secureForm);
 
-        yield return w;
+        yield return web.SendWebRequest();
 
-        response(JsonUtility.FromJson<Response>(w.text));
+        
+        string res = "{\"message\": \"Sign in sucessfully\",\"error\": \"\"}";
+
+        if(web.result == UnityWebRequest.Result.ConnectionError || web.result == UnityWebRequest.Result.ProtocolError){
+            formIssues = JsonUtility.FromJson<Form>(web.downloadHandler.text);
+            Debug.Log(formIssues.email[0]);
+            res = "{\"message\": \"Sign in Failed\",\"error\": \""+formIssues.email[0]+"\"}";
+        }
+
+        response(JsonUtility.FromJson<Response>(res));
+        
+
     }
 
     /* LOGIN USER */
-    public void CheckUser(string userName, string password, Action<Response> response){
-        StartCoroutine( CO_CheckUser( userName, password, response ) );
+    public void CheckUser(string email, string password, Action<Response> response){
+        StartCoroutine( CO_CheckUser( email, password, response ) );
     }
 
-    public IEnumerator CO_CheckUser(string userName, string password, Action<Response> response){
+    public IEnumerator CO_CheckUser(string email, string password, Action<Response> response){
         SecureForm form = new SecureForm();
-        form.secureForm.AddField("userName",userName);
+        form.secureForm.AddField("email",email);
         form.secureForm.AddField("password",password);
 
-        WWW w = new WWW("http://localhost/Exousia_DB/Login.php",form.secureForm);
+        UnityWebRequest web = UnityWebRequest.Post("http://localhost:8000/user/login",form.secureForm);
 
-        yield return w;
-
-        response(JsonUtility.FromJson<Response>(w.text));
+        yield return web.SendWebRequest();
+        Debug.Log(web.downloadHandler.text);
+        response(JsonUtility.FromJson<Response>(web.downloadHandler.text));
     }
 
 
@@ -121,10 +143,29 @@ public class Scr_Login : MonoBehaviour
     }
 }
 
-[Serializable]
-public class Response{
-    public bool   done    = false;
-    public string message = "" ;
+    public class Form{
+        public List<string> id;
+        public List<string> user;
+        public List<string> email;
+        public List<string> password;
+        public List<string> token;
+    }
 
-    
-}
+    public class Player{
+        public int id = 0;
+        public string user = "";
+        public string email = "";
+        public string password = "";
+        public string token = "";
+        public DateTime updateAt ;
+        public DateTime createdAt ;
+    }
+
+
+    [Serializable]
+    public class Response{
+        public string player;
+        public string message = "";
+        public string error   = "";
+        
+    }
