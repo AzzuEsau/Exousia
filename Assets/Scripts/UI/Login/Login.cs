@@ -25,7 +25,7 @@ public class Login : MonoBehaviour
     [SerializeField] private InputField mL_emailInput            = null;
     [SerializeField] private InputField mL_passwordInput         = null;
     [SerializeField] private Text mL_messageLabel                = null;
-    
+
     
     public Player user;
     public Form formIssues;
@@ -86,14 +86,14 @@ public class Login : MonoBehaviour
     }
 
     public IEnumerator CO_CreateUser(string userName, string email, string password, Action<Response> response){
-        SecureForm form = new SecureForm();
-        form.secureForm.AddField("id",10);
-        form.secureForm.AddField("user",userName);
-        form.secureForm.AddField("email",email);
-        form.secureForm.AddField("password",password);
-        form.secureForm.AddField("token",password);
+        WWWForm form = new WWWForm();
+        form.AddField("id",10);
+        form.AddField("user",userName);
+        form.AddField("email",email);
+        form.AddField("password",password);
+        form.AddField("token",password);
 
-        UnityWebRequest web = UnityWebRequest.Post("http://localhost:8000/user/",form.secureForm);
+        UnityWebRequest web = UnityWebRequest.Post("http://localhost:8000/user/",form);
 
         yield return web.SendWebRequest();
 
@@ -102,7 +102,6 @@ public class Login : MonoBehaviour
 
         if(web.result == UnityWebRequest.Result.ConnectionError || web.result == UnityWebRequest.Result.ProtocolError){
             formIssues = JsonUtility.FromJson<Form>(web.downloadHandler.text);
-            Debug.Log(formIssues.email[0]);
             res = "{\"message\": \"Sign in Failed\",\"error\": \""+formIssues.email[0]+"\"}";
         }
 
@@ -117,14 +116,14 @@ public class Login : MonoBehaviour
     }
 
     public IEnumerator CO_CheckUser(string email, string password, Action<Response> response){
-        SecureForm form = new SecureForm();
-        form.secureForm.AddField("email",email);
-        form.secureForm.AddField("password",password);
+        WWWForm form = new WWWForm();
+        form.AddField("email",email);
+        form.AddField("password",password);
 
-        UnityWebRequest web = UnityWebRequest.Post("http://localhost:8000/user/login",form.secureForm);
+        UnityWebRequest web = UnityWebRequest.Post("http://localhost:8000/user/login",form);
 
         yield return web.SendWebRequest();
-        Debug.Log(web.downloadHandler.text);
+        
         response(JsonUtility.FromJson<Response>(web.downloadHandler.text));
     }
 

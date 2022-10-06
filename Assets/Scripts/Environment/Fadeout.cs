@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fadeout : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer renderer;
+    private SpriteRenderer SpRenderer;
     private float transparency = 1;
     private float newTransparency = 1;
     public bool autoActive;
@@ -21,12 +21,12 @@ public class Fadeout : MonoBehaviour
     {
         if(transparency > newTransparency){
             transparency -= 0.02f;
-            renderer.color = new Color (1, 1, 1, transparency); 
+            SpRenderer.color = new Color (1, 1, 1, transparency); 
         }
         
         if(transparency < newTransparency){
             transparency += 0.02f;
-            renderer.color = new Color (1, 1, 1, transparency); 
+            SpRenderer.color = new Color (1, 1, 1, transparency); 
         }
     }
     
