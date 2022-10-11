@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f45b95dc18fab494697ba3e1b9968c37
+guid: 2f5316e1f3ac5d0458dccee1f2d9e92e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,11 +101,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TileMapTierra_0
+      name: TileMapTierra 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +125,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab999d1b5ad6c8438c2fef6c9d379b6
-      internalID: -1694849445
+      spriteID: 271e9ba1df7453b47b62dab2ad3f57f8
+      internalID: 1348706326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapTierra_1
+      name: TileMapTierra 1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,20 +146,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a15fae9c769ac2144a8b8f31586014d3
-      internalID: -326459500
+      spriteID: 0e0a6561a0005cc4baa5e97b1456f8bb
+      internalID: 866908660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapTierra_2
+      name: TileMapTierra 1_2
       rect:
         serializedVersion: 2
         x: 64
@@ -155,20 +167,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f51da706b858c0242b7403791fd89c32
-      internalID: 1556203315
+      spriteID: 19af7b20be037d149ac4312ffd0c42fa
+      internalID: -1636847500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapTierra_3
+      name: TileMapTierra 1_3
       rect:
         serializedVersion: 2
         x: 0
@@ -176,20 +188,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50dce83eaf9c67c49ac0b628519a0c5c
-      internalID: 1506217675
+      spriteID: 9a73f024ab05eff408a905f927c1495b
+      internalID: -1274563979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapTierra_4
+      name: TileMapTierra 1_4
       rect:
         serializedVersion: 2
         x: 32
@@ -197,20 +209,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5112a4dccfada1c4286378667c0c57be
-      internalID: -1013673656
+      spriteID: 6d1b05ab560d0814ebe3d1f589f747b3
+      internalID: 648306773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TileMapTierra_5
+      name: TileMapTierra 1_5
       rect:
         serializedVersion: 2
         x: 64
@@ -218,14 +230,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f42f3a09199fc648b0b968dd68ab7a1
-      internalID: 931466716
+      spriteID: efcd15244a9f83049b55a9560b1a1e50
+      internalID: -233198921
       vertices: []
       indices: 
       edges: []
@@ -241,12 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TileMapTierra_1: -326459500
-      TileMapTierra_3: 1506217675
-      TileMapTierra_2: 1556203315
-      TileMapTierra_4: -1013673656
-      TileMapTierra_5: 931466716
-      TileMapTierra_0: -1694849445
+      TileMapTierra 1_5: -233198921
+      TileMapTierra 1_3: -1274563979
+      TileMapTierra 1_2: -1636847500
+      TileMapTierra 1_4: 648306773
+      TileMapTierra 1_0: 1348706326
+      TileMapTierra 1_1: 866908660
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

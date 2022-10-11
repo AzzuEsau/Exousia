@@ -11,7 +11,7 @@ TagManager:
   - Canvas
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Checkpoint
     uniqueID: 3557082943
+    locked: 0
+  - name: Player
+    uniqueID: 2641804899
     locked: 0
   - name: Canvas
     uniqueID: 2097218185
