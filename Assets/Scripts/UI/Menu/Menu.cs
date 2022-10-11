@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Scr_Menu : MonoBehaviour
 {
-    public GameObject flecha, lista;
+    public GameObject row, list;
     public GameObject OptinsInterface;
     public GameObject ChargeInterface;
-    int indice = 0;
+    int index = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        Dibujar();
+        Draw();
     }
 
     // Update is called once per frame
@@ -22,47 +22,47 @@ public class Scr_Menu : MonoBehaviour
         bool up = Input.GetKeyDown("up");
         bool down = Input.GetKeyDown("down");
 
-        if(up) indice--;
-        if(down) indice++;
+        if(up) index--;
+        if(down) index++;
 
-        if(indice > lista.transform.childCount-1) indice = 0;
-        else if(indice < 0 ) indice = lista.transform.childCount - 1;
+        if(index > list.transform.childCount-1) index = 0;
+        else if(index < 0 ) index = list.transform.childCount - 1;
 
-        if(up || down) Dibujar();
+        if(up || down) Draw();
 
-        if(Input.GetKeyDown("return")) Accion();
+        if(Input.GetKeyDown("return")) Action();
     }
 
-    void Dibujar(){
-        Transform opcion = lista.transform.GetChild(indice);
-        flecha.transform.position = new Vector3(opcion.position.x-2.3f, opcion.position.y+0.2f, 0f);
+    void Draw(){
+        Transform option = list.transform.GetChild(index);
+        row.transform.position = new Vector3(option.position.x-2.3f, option.position.y+0.2f, 0f);
 
 
     }
 
-    void Accion(){
-        Transform opcion = lista.transform.GetChild(indice);
+    void Action(){
+        Transform option = list.transform.GetChild(index);
 
 
-        if(opcion.gameObject.name == "Inicio"){
-            Inicio();
+        if(option.gameObject.name == "Start"){
+            Start();
         }
 
-        if(opcion.gameObject.name == "Cargar"){
+        if(option.gameObject.name == "Charge"){
             Charge();
         }
 
-        if(opcion.gameObject.name == "Opciones"){
-            Charge();
+        if(option.gameObject.name == "Options"){
+            Options();
         }
 
-        if(opcion.gameObject.name == "Salir"){
+        if(option.gameObject.name == "Salir"){
             Exit();
         }
     }
 
-    public void Inicio(){
-            SceneManager.LoadScene("Olimpo");
+    public void Start(){
+            SceneManager.LoadScene("Olympus");
     }
 
     public void Exit(){
@@ -70,26 +70,26 @@ public class Scr_Menu : MonoBehaviour
     }
 
     public void Charge(){
-        lista.SetActive(false);
+        list.SetActive(false);
         ChargeInterface.SetActive(true);
-        flecha.SetActive(false);
+        row.SetActive(false);
     }
 
     public void ExitCharge(){
         ChargeInterface.SetActive(false);
-        lista.SetActive(true);
-        flecha.SetActive(true);
+        list.SetActive(true);
+        row.SetActive(true);
     }
 
     public void Options(){
         OptinsInterface.SetActive(true);
-        lista.SetActive(false);
-        flecha.SetActive(false);
+        list.SetActive(false);
+        row.SetActive(false);
     }
 
     public void ExitOptions(){
         OptinsInterface.SetActive(false);
-        lista.SetActive(true);
-        flecha.SetActive(true);
+        list.SetActive(true);
+        row.SetActive(true);
     }
 }

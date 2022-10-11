@@ -34,7 +34,7 @@ public class Login : MonoBehaviour
 
     public void SubmitLogin(){
         if(mL_emailInput.text == "" || mL_passwordInput.text == ""){
-            m_messageLabel.text = "El usuario o contraseña estan vacios";
+            m_messageLabel.text = "the username or password field is empty";
             return;
         }
 
@@ -51,7 +51,7 @@ public class Login : MonoBehaviour
 
     public void SubmitRegister(){
         if(m_userNameInput.text == "" || m_emailInput.text == "" || m_passwordInput.text == "" || m_reEnterPasswordInput.text == ""){
-            m_messageLabel.text = "Porfavor llena todos los campos";
+            m_messageLabel.text = "Please fill in all the fields";
             return;
         }
 
