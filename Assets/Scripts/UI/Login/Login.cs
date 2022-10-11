@@ -27,7 +27,7 @@ public class Login : MonoBehaviour
     [SerializeField] private Text mL_messageLabel                = null;
 
     
-    public Player user;
+    public PlayerUser user;
     public Form formIssues;
     public string userString;
 
@@ -42,7 +42,7 @@ public class Login : MonoBehaviour
             if(response.error == ""){
                 userString = response.player.Replace("'","\"");
                 PlayerPrefs.SetString("User", userString);
-                user = JsonUtility.FromJson<Player>(userString);
+                user = JsonUtility.FromJson<PlayerUser>(userString);
                 SceneManager.LoadScene("TestMap");
             }
             mL_messageLabel.text = response.message;
@@ -150,7 +150,7 @@ public class Login : MonoBehaviour
         public List<string> token;
     }
 
-    public class Player{
+    public class PlayerUser{
         public int id = 0;
         public string user = "";
         public string email = "";
