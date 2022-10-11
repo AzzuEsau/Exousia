@@ -63,7 +63,7 @@ public class Login : MonoBehaviour
                 m_messageLabel.text = "Error: " + response.error;
             });
         }else{
-            m_messageLabel.text = "Contraseñas diferentes";
+            m_messageLabel.text = "Different passwords";
             return;
         }
     }
