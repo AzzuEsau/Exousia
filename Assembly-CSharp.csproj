@@ -37,8 +37,9 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Entity\Entity.cs" />
-     <Compile Include="Assets\Scripts\Login\Scr_Login.cs" />
+     <Compile Include="Assets\Scripts\Entity\Enemy\GroundedEnemy\GroundedEnemy.cs" />
      <Compile Include="Assets\Scripts\Entity\Player\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Entity\Enemy\FlyingEnemy\FlyingEnemy.cs" />
      <Compile Include="Assets\Scripts\Entity\Player\LifeBar.cs" />
      <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Entity\Player\Player.cs" />

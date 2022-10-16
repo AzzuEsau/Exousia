@@ -9,7 +9,7 @@ public class Player : Entity
     #region COMPONENTS
         [Header ("General")]
             [SerializeField] protected PlayerInput playerInput;
-            [SerializeField] protected Rigidbody2D rgBody;
+            [SerializeField] protected Transform trans;
 
         [Header ("Colliders")]
             [SerializeField] protected CapsuleCollider2D mainCollider;
@@ -23,9 +23,9 @@ public class Player : Entity
             [SerializeField] protected LayerMask groundLayer;
     #endregion
             [SerializeField] protected PlayerController playerController;
+            [SerializeField] protected LifeBar lifeBar;
 
     #region ATTRIBUTES
-
 
 
 
@@ -40,12 +40,29 @@ public class Player : Entity
     void Start()
     {
         this.movementSpeed = 7f;
-        playerController.AssignElements(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
+        playerController.AssignElements(ref rb, ref groundLayer, ref floorColliderDetector, movementSpeed);
     }
 
     // Update is called once per frame 
     void Update()
     {
         playerController.Execute(true);
+        UpdateLife();
+        
     }
+
+    protected void UpdateLife()
+    {
+        if (life < lifeBar.GetLife())
+            lifeBar.DecreaseLife((int)(lifeBar.GetLife() - life));
+        else if (life > lifeBar.GetLife())
+            lifeBar.IncreaseLife((int)(life - lifeBar.GetLife()));
+    }
+
+    public Transform GetTransform()
+    {
+        return this.trans;
+    }
+
+
 }

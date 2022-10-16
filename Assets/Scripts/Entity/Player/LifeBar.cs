@@ -10,15 +10,16 @@ public class LifeBar : MonoBehaviour
     private GameObject[] hearts;
     [SerializeField]
     private int totalHearts;
+    private int maxHearts = 6;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        totalHearts = 6;
-        hearts = new GameObject [6];
+        totalHearts = maxHearts;
+        hearts = new GameObject [maxHearts];
 
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < maxHearts; i++)
         {
             hearts[i] = lifeBar.transform.GetChild(i).gameObject;
         }
@@ -27,7 +28,7 @@ public class LifeBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < maxHearts; i++)
         {
             if (i < totalHearts)
             {
@@ -48,5 +49,10 @@ public class LifeBar : MonoBehaviour
     public void IncreaseLife(int hearts)
     {
         totalHearts += hearts;
+    }
+
+    public int GetLife()
+    {
+        return totalHearts;
     }
 }
