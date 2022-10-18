@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DecisitionTree {
+public class DecisionTree {
     class Node
     {
         public int info;
@@ -11,7 +11,7 @@ public class DecisitionTree {
     }
     Node root;
 
-    public DecisitionTree() 
+    public DecisionTree() 
     {
         root=null;
     }
@@ -97,7 +97,7 @@ public class DecisitionTree {
 
     // static void Main(string[] args)
     // {
-    //     DecisitionTree abo = new DecisitionTree ();
+    //     DecisionTree abo = new DecisionTree ();
     //     abo.Insert (100);
     //     abo.Insert (50);
     //     abo.Insert (25);
