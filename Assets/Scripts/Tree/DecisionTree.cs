@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DecisionTree {
+public class DecisionTree : MonoBehaviour
+{
     class Node
     {
         public int info;
@@ -49,7 +50,7 @@ public class DecisionTree {
     {
         if (rebuild != null)
         {
-            Console.Write(rebuild.info + " ");
+            Debug.Log(rebuild.info + " ");
             PrintPrev (rebuild.left);
             PrintPrev (rebuild.right);
         }
@@ -58,7 +59,7 @@ public class DecisionTree {
     public void PrintPrev ()
     {
         PrintPrev (root);
-        Console.WriteLine();
+        Debug.Log("Line");
     }
 
     private void printInside (Node rebuild)
@@ -66,7 +67,7 @@ public class DecisionTree {
         if (rebuild != null)
         {    
             printInside (rebuild.left);
-            Console.Write(rebuild.info + " ");
+            Debug.Log(rebuild.info + " ");
             printInside (rebuild.right);
         }
     }
@@ -74,7 +75,7 @@ public class DecisionTree {
     public void printInside ()
     {
         printInside (root);
-        Console.WriteLine();
+        Debug.Log("Line");
     }
 
 
@@ -84,7 +85,7 @@ public class DecisionTree {
         {
             printNext (rebuild.left);
             printNext (rebuild.right);
-            Console.Write(rebuild.info + " ");
+            Debug.Log(rebuild.info + " ");
         }
     }
 
@@ -92,23 +93,22 @@ public class DecisionTree {
     public void printNext ()
     {
         printNext (root);
-        Console.WriteLine();
+        Debug.Log("Line");
     }
 
-    // static void Main(string[] args)
-    // {
-    //     DecisionTree abo = new DecisionTree ();
-    //     abo.Insert (100);
-    //     abo.Insert (50);
-    //     abo.Insert (25);
-    //     abo.Insert (75);
-    //     abo.Insert (150);
-    //     Console.WriteLine ("Impresion preorden: ");
-    //     abo.PrintPrev ();
-    //     Console.WriteLine ("Impresion entreorden: ");
-    //     abo.printInside ();
-    //     Console.WriteLine ("Impresion postorden: ");
-    //     abo.printNext ();
-    //     Console.ReadKey();
-    // }
+    public void Start()
+    {
+        DecisionTree tree = new DecisionTree ();
+        tree.Insert (100);
+        tree.Insert (50);
+        tree.Insert (25);
+        tree.Insert (75);
+        tree.Insert (150);
+        Debug.Log("Impresion preorden: ");
+        tree.PrintPrev ();
+        Debug.Log("Impresion entreorden: ");
+        tree.printInside ();
+        Debug.Log("Impresion postorden: ");
+        tree.printNext ();
+    }
 }
