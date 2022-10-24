@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     private List<string> dialogueList;
     private int dialogueID;
-    private string name;
+    private string nameNPC;
 
 
     // Start is called before the first frame update
@@ -44,11 +44,11 @@ public class DialogueManager : MonoBehaviour
 
     public void SetDialogue(string _name, string[] dialogue)
     {
-        name = _name;
+        nameNPC = _name;
         dialogueList = new List<string>(dialogue.Length);
         dialogueList.AddRange(dialogue);
         dialogueID = 0;
-        nameText.text = name;
+        nameText.text = nameNPC;
         continueButtonText.text = "Continuar";
 
         ShowDialogue();

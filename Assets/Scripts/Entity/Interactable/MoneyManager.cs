@@ -13,6 +13,7 @@ public class MoneyManager : MonoBehaviour
     // We get the text components of money panel
     private TextMeshProUGUI moneyText;
 
+    [SerializeField]
     private int money;
 
 

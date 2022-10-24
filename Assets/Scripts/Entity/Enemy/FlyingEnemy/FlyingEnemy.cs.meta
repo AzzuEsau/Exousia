@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Entity/Enemy/FlyingEnemy/FlyingEnemy.cs.meta
 guid: 778810679cd94dc4facb500778f7103d
+=======
+guid: 54fdf231882c2134e87a8e0f51b894c6
+>>>>>>> dev:Assets/Scripts/Environment/CloudMovement.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
