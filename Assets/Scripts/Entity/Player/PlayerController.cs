@@ -141,7 +141,6 @@ public class PlayerController : MonoBehaviour{
                 moneyInteraction.Interact();
             }
         }
-}} 
-    }
+}
     #endregion
 }
