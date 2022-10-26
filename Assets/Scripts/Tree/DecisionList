@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class DecisionList : MonoBehaviour
+{
+    class List
+    {
+        public int info;
+        public Node left, right;
+    }
+
+    public DecisionList() 
+    {
+        root=null;
+    }
+    
+    public void Insert (int info)
+    {
+        Node newNode;
+        newNode = new Node ();
+        newNode.info = info;
+        newNode.left = null;
+        newNode.right = null;
+        if (root == null)
+            root = newNode;
+        else
+        {
+            Node before = null, rebuild;
+            rebuild = root;
+            while (rebuild != null)
+            {
+                before = rebuild;
+                if (info < rebuild.info)
+                    rebuild = rebuild.left;
+                else
+                    rebuild = rebuild.right;
+            }
+            if (info < before.info)
+                before.left = newNode;
+            else
+                before.right = newNode;
+        }
+    }
+
+
+    public void Start()
+    {
+        DecisionList tree = new DecisionList ();
+        tree.Insert (100);
+        tree.Insert (50);
+        tree.Insert (25);
+        tree.Insert (75);
+        tree.Insert (150);
+        Debug.Log("Impresion preorden: ");
+        tree.PrintPrev ();
+        Debug.Log("Impresion entreorden: ");
+        tree.printInside ();
+        Debug.Log("Impresion postorden: ");
+        tree.printNext ();
+    }
+}
