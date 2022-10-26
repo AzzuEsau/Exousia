@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Scr_Menu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
+    
     public GameObject row, list;
     public GameObject OptinsInterface;
     public GameObject ChargeInterface;
@@ -45,7 +46,7 @@ public class Scr_Menu : MonoBehaviour
 
 
         if(option.gameObject.name == "Start"){
-            Start();
+            StartGame();
         }
 
         if(option.gameObject.name == "Charge"){
@@ -61,7 +62,7 @@ public class Scr_Menu : MonoBehaviour
         }
     }
 
-    public void Start(){
+    public void StartGame(){
             SceneManager.LoadScene("Olympus");
     }
 
