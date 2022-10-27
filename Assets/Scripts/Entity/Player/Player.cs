@@ -10,8 +10,9 @@ public class Player : Entity
         [Header ("General")]
             [SerializeField] protected PlayerInput playerInput;
             [SerializeField] protected Transform trans;
+            [SerializeField] protected Rigidbody2D rgBody;
 
-        [Header ("Colliders")]
+    [Header ("Colliders")]
             [SerializeField] protected CapsuleCollider2D mainCollider;
             [SerializeField] protected BoxCollider2D floorColliderDetector;
 
@@ -49,6 +50,7 @@ public class Player : Entity
     // Update is called once per frame 
     void Update()
     {
+        UpdateLife();
         isGrounded = IsGrounded();
         playerController.Execute(true, isGrounded);
     }
@@ -56,10 +58,6 @@ public class Player : Entity
     #region COLLISION_DETECTION
     private bool IsGrounded() => floorColliderDetector.IsTouchingLayers(groundLayer);
     #endregion
-        playerController.Execute(true);
-        UpdateLife();
-        
-    }
 
     protected void UpdateLife()
     {
