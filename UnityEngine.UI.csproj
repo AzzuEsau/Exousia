@@ -35,6 +35,27 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
+  <PropertyGroup>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <UnityProjectGenerator>Package</UnityProjectGenerator>
+    <UnityProjectGeneratorVersion>2.0.16</UnityProjectGeneratorVersion>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
+    <UnityVersion>2021.3.9f1</UnityVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Scripts\Entity\Entity.cs" />
+    <Compile Include="Assets\Scripts\UI\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\Entity\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Entity\Player\LifeBar.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Entity\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Entity\Player\PlayerRenderer.cs" />
+    <Compile Include="Assets\Scripts\Entity\Enemy\Enemy.cs" />
+  </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Entity\Entity.cs" />
      <Compile Include="Assets\Scripts\Entity\Player\PlayerController.cs" />
@@ -929,6 +950,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

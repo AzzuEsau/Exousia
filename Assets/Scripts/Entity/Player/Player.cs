@@ -10,8 +10,9 @@ public class Player : Entity
         [Header ("General")]
             [SerializeField] protected PlayerInput playerInput;
             [SerializeField] protected Transform trans;
+            [SerializeField] protected Rigidbody2D rgBody;
 
-        [Header ("Colliders")]
+    [Header ("Colliders")]
             [SerializeField] protected CapsuleCollider2D mainCollider;
             [SerializeField] protected BoxCollider2D floorColliderDetector;
 
@@ -23,6 +24,8 @@ public class Player : Entity
             [SerializeField] protected LayerMask groundLayer;
     #endregion
             [SerializeField] protected PlayerController playerController;
+            //[SerializeField] protected PlayerRenderer playerRenderer;
+            [SerializeField] protected bool isGrounded;
             [SerializeField] protected LifeBar lifeBar;
 
     #region ATTRIBUTES
@@ -40,16 +43,21 @@ public class Player : Entity
     void Start()
     {
         this.movementSpeed = 7f;
-        playerController.AssignElements(ref rb, ref groundLayer, ref floorColliderDetector, movementSpeed);
+        playerController.AssignElements(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
+        //playerRenderer.AssignElements(ref isGrounded);
     }
 
     // Update is called once per frame 
     void Update()
     {
-        playerController.Execute(true);
         UpdateLife();
-        
+        isGrounded = IsGrounded();
+        playerController.Execute(true, isGrounded);
     }
+
+    #region COLLISION_DETECTION
+    private bool IsGrounded() => floorColliderDetector.IsTouchingLayers(groundLayer);
+    #endregion
 
     protected void UpdateLife()
     {
