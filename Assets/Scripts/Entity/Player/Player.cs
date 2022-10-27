@@ -9,7 +9,7 @@ public class Player : Entity
     #region COMPONENTS
         [Header ("General")]
             [SerializeField] protected PlayerInput playerInput;
-            [SerializeField] protected Rigidbody2D rgBody;
+            [SerializeField] protected Transform trans;
 
         [Header ("Colliders")]
             [SerializeField] protected CapsuleCollider2D mainCollider;
@@ -25,9 +25,9 @@ public class Player : Entity
             [SerializeField] protected PlayerController playerController;
             //[SerializeField] protected PlayerRenderer playerRenderer;
             [SerializeField] protected bool isGrounded;
+            [SerializeField] protected LifeBar lifeBar;
 
     #region ATTRIBUTES
-
 
 
 
@@ -56,4 +56,23 @@ public class Player : Entity
     #region COLLISION_DETECTION
     private bool IsGrounded() => floorColliderDetector.IsTouchingLayers(groundLayer);
     #endregion
+        playerController.Execute(true);
+        UpdateLife();
+        
+    }
+
+    protected void UpdateLife()
+    {
+        if (life < lifeBar.GetLife())
+            lifeBar.DecreaseLife((int)(lifeBar.GetLife() - life));
+        else if (life > lifeBar.GetLife())
+            lifeBar.IncreaseLife((int)(life - lifeBar.GetLife()));
+    }
+
+    public Transform GetTransform()
+    {
+        return this.trans;
+    }
+
+
 }

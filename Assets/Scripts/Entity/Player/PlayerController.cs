@@ -148,4 +148,20 @@ public class PlayerController : MonoBehaviour{
             }
         }
     #endregion
+
+
+    #region INTERACTION
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Interactable"))
+        {
+            MoneyInteractable moneyInteraction = collision.GetComponent<MoneyInteractable>();
+          
+            if(moneyInteraction != null)
+            {
+                moneyInteraction.Interact();
+            }
+        }
+}
+    #endregion
 }
