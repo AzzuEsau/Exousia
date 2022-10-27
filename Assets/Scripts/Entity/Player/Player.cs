@@ -23,6 +23,8 @@ public class Player : Entity
             [SerializeField] protected LayerMask groundLayer;
     #endregion
             [SerializeField] protected PlayerController playerController;
+            //[SerializeField] protected PlayerRenderer playerRenderer;
+            [SerializeField] protected bool isGrounded;
 
     #region ATTRIBUTES
 
@@ -41,11 +43,17 @@ public class Player : Entity
     {
         this.movementSpeed = 7f;
         playerController.AssignElements(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
+        //playerRenderer.AssignElements(ref isGrounded);
     }
 
     // Update is called once per frame 
     void Update()
     {
-        playerController.Execute(true);
+        isGrounded = IsGrounded();
+        playerController.Execute(true, isGrounded);
     }
+
+    #region COLLISION_DETECTION
+    private bool IsGrounded() => floorColliderDetector.IsTouchingLayers(groundLayer);
+    #endregion
 }

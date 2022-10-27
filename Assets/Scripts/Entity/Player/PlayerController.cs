@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour{
                 protected float jumpForce = 15f;
                 protected LayerMask groundLayer;
                 protected BoxCollider2D floorCollider;
+                private bool isGrounded;
 
             [Header ("Input")]
                 protected Vector2 moveInput;
@@ -31,10 +32,17 @@ public class PlayerController : MonoBehaviour{
             [Header ("JumpingBuffer")]
                 protected float waitJumpBufferTime;
                 protected float jumpBufferTimeCounter;
+
+            [Header("Animator")]
+                [SerializeField]
+                protected Animator animator;
+                [SerializeField]
+                protected GameObject player;
+
     #endregion
-    
+
     #region STATICS
-        [Header ("Gravity")]
+    [Header ("Gravity")]
             protected static float gravityScale;
             protected static float fallMultipier = 1.8f;
             protected static float waitTime = 0.12f;
@@ -54,12 +62,14 @@ public class PlayerController : MonoBehaviour{
         waitJumpBufferTime = waitTime;
     }
 
-    public void Execute(bool isAlive)
+    public void Execute(bool isAlive, bool isGrounded)
     {
         if(!isAlive)
             return;
 
+        this.isGrounded = isGrounded;
         Run();
+        FlipSprite();
         Gravity();
         ResetJumps();
         Jump();
@@ -74,24 +84,35 @@ public class PlayerController : MonoBehaviour{
     #endregion
 
 
-    #region RUN
-        //make the movement positive and compare it with 0 Epsilon
-        public bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
+  
+    #region Run
+    //make the movement positive and compare it with 0 Epsilon
+    private bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
 
-        private void Run()
+    private void FlipSprite()
+    {
+        if (IsRunning())
         {
-            // Use the values getted in the function OnMove from the Input System
-            Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
-            rgBody.velocity = playerVelocity;
+            Debug.Log(Mathf.Sign(rgBody.velocity.x));
+            //Rotate de player using sign wich retur if the value is positive or negative
+            player.transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
+            //transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
         }
-    #endregion
+    }
 
-    #region COLLISION_DETECTION
-        private bool IsGrounded () => floorCollider.IsTouchingLayers(groundLayer);
+    private void Run()
+    {
+        // Use the values getted in the function OnMove from the Input System
+        Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
+        rgBody.velocity = playerVelocity;
+
+        // Activate the animation changin the boolean
+        animator.SetBool("isRunning", IsRunning());
+    }
     #endregion
 
     #region GRAVITY
-        private void Gravity()
+    private void Gravity()
         {
             // Increase the gravity to jump less if the player isn't pressing the jump button
             if (rgBody.velocity.y > 0 && !jumpingInput)
@@ -108,7 +129,7 @@ public class PlayerController : MonoBehaviour{
             // Condition to avoid continuos jump and reset the timer
             jumpChangedCounter = !jumpingInput ?  waitJumpChanged : jumpChangedCounter - Time.deltaTime;
             // Reset CoyoteTime
-            coyoteTimeCounter = IsGrounded() ? waitCoyoteTime : coyoteTimeCounter - Time.deltaTime;
+            coyoteTimeCounter = isGrounded ? waitCoyoteTime : coyoteTimeCounter - Time.deltaTime;
             // Reset JumpBuffer
             jumpBufferTimeCounter = jumpingInput && jumpChangedCounter > 0 ? waitJumpBufferTime : jumpBufferTimeCounter - Time.deltaTime;
         }
