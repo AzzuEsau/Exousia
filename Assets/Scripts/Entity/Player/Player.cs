@@ -55,6 +55,22 @@ public class Player : Entity
         playerController.Execute(true, isGrounded);
     }
 
+    
+    #region INTERACTION
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Interactable"))
+        {
+            MoneyInteractable moneyInteraction = collision.GetComponent<MoneyInteractable>();
+          
+            if(moneyInteraction != null)
+            {
+                moneyInteraction.Interact();
+            }
+        }
+}
+    #endregion
+
     #region COLLISION_DETECTION
     private bool IsGrounded() => floorColliderDetector.IsTouchingLayers(groundLayer);
     #endregion
