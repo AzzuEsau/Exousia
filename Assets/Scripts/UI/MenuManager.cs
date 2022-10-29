@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject SettingsScreen;
+    private bool SettingsStatus = false;
+
     // Redirects to the scene of the game
     public void LoadGame()
     {
-        SceneManager.LoadScene("Game");
+        // SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("TestMap H");
     }
 
     public void LoadMainMenu()
@@ -20,6 +25,13 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Controls");
     }
+
+    public void LoadSettings()
+    {
+        SettingsStatus = !SettingsStatus;
+        SettingsScreen.SetActive(SettingsStatus);
+    }
+
 
     public void LoadCredits()
     {

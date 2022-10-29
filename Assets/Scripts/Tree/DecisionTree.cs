@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class DecisionTree : MonoBehaviour
 {
+    [SerializeField]
+    private DecisionList Decision;
+
+
     class Node
     {
-        public int info;
+        public DecisionList info;
         public Node left, right;
     }
     Node root;
@@ -17,7 +21,7 @@ public class DecisionTree : MonoBehaviour
         root=null;
     }
     
-    public void Insert (int info)
+    public void Insert (DecisionList info)
     {
         Node newNode;
         newNode = new Node ();
@@ -33,12 +37,12 @@ public class DecisionTree : MonoBehaviour
             while (rebuild != null)
             {
                 before = rebuild;
-                if (info < rebuild.info)
+                if (rebuild.info.response == "yes")
                     rebuild = rebuild.left;
                 else
                     rebuild = rebuild.right;
             }
-            if (info < before.info)
+            if (info.response == "yes")
                 before.left = newNode;
             else
                 before.right = newNode;
@@ -50,7 +54,7 @@ public class DecisionTree : MonoBehaviour
     {
         if (rebuild != null)
         {
-            Debug.Log(rebuild.info + " ");
+            Debug.Log(JsonUtility.ToJson(rebuild.info));
             PrintPrev (rebuild.left);
             PrintPrev (rebuild.right);
         }
@@ -67,7 +71,7 @@ public class DecisionTree : MonoBehaviour
         if (rebuild != null)
         {    
             printInside (rebuild.left);
-            Debug.Log(rebuild.info + " ");
+            Debug.Log(JsonUtility.ToJson(rebuild.info));
             printInside (rebuild.right);
         }
     }
@@ -85,7 +89,7 @@ public class DecisionTree : MonoBehaviour
         {
             printNext (rebuild.left);
             printNext (rebuild.right);
-            Debug.Log(rebuild.info + " ");
+            Debug.Log(JsonUtility.ToJson(rebuild.info));
         }
     }
 
@@ -99,16 +103,25 @@ public class DecisionTree : MonoBehaviour
     public void Start()
     {
         DecisionTree tree = new DecisionTree ();
-        tree.Insert (100);
-        tree.Insert (50);
-        tree.Insert (25);
-        tree.Insert (75);
-        tree.Insert (150);
+        FakeD1Initialize();
+        tree.Insert(Decision);
+        tree.Insert(Decision);
+        tree.Insert(Decision);
+        tree.Insert(Decision);
+        tree.Insert(Decision);
         Debug.Log("Impresion preorden: ");
         tree.PrintPrev ();
         Debug.Log("Impresion entreorden: ");
         tree.printInside ();
         Debug.Log("Impresion postorden: ");
         tree.printNext ();
+    }
+
+    public void FakeD1Initialize()
+    {
+        Decision.name = "Poseidon keep trident";
+        Decision.time = 4000;
+        Decision.response = "yes";
+        Decision.response = null;
     }
 }

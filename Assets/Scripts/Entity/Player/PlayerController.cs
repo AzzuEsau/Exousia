@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour{
     {
         if (IsRunning())
         {
-            Debug.Log(Mathf.Sign(rgBody.velocity.x));
             //Rotate de player using sign wich retur if the value is positive or negative
             player.transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
             //transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
