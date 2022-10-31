@@ -25,6 +25,6 @@ public class Press_any_key : MonoBehaviour
     }
 
     private void changeToMenu(){
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 }

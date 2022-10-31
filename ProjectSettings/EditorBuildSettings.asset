@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScenes/TestMap H.unity
     guid: 14128f3360b4a384bb61629a0d29db34
+  - enabled: 1
+    path: Assets/Scenes/PressKey/PressKey.unity
+    guid: ff8a47b576b3de2478b93787c80ec40d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0acea81e8e7b31d46827928e5819e674, type: 2}

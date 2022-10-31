@@ -43,7 +43,7 @@ public class Login : MonoBehaviour
                 userString = response.player.Replace("'","\"");
                 PlayerPrefs.SetString("User", userString);
                 user = JsonUtility.FromJson<PlayerUser>(userString);
-                SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("PressKey");
             }
             mL_messageLabel.text = response.message;
         });
