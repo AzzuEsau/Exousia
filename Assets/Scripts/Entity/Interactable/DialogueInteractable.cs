@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCInteractable : Interactable
+public class DialogueInteractable : Interactable
 {
 
     [SerializeField]
