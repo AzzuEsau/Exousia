@@ -26,6 +26,7 @@ public class Player : Entity
             [SerializeField] protected PlayerController playerController;
             //[SerializeField] protected PlayerRenderer playerRenderer;
             [SerializeField] protected bool isGrounded;
+            [SerializeField] protected bool isRunning;
             [SerializeField] protected LifeBar lifeBar;
 
     #region ATTRIBUTES
@@ -51,8 +52,23 @@ public class Player : Entity
     void Update()
     {
         UpdateLife();
+        FlipSprite();
         isGrounded = IsGrounded();
-        playerController.Execute(true, isGrounded);
+        isRunning = IsRunning();
+        playerController.Execute(true, isGrounded, isRunning);
+    }
+
+    //make the movement positive and compare it with 0 Epsilon
+    private bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
+
+    private void FlipSprite()
+    {
+        if (IsRunning())
+        {
+            //Rotate de player using sign wich retur if the value is positive or negative
+            transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
+            //transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

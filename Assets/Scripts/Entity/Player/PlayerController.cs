@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour{
     #region VARIABLES
             [Header ("Movement")]
                 protected float movementSpeed;
+                private bool isRunning;
 
             [Header ("Jump")]
                 protected float jumpForce = 15f;
@@ -62,18 +63,21 @@ public class PlayerController : MonoBehaviour{
         waitJumpBufferTime = waitTime;
     }
 
-    public void Execute(bool isAlive, bool isGrounded)
+    public void Execute(bool isAlive, bool isGrounded, bool isRunning)
     {
         if(!isAlive)
             return;
 
         this.isGrounded = isGrounded;
+        this.isRunning = isRunning;
+
         Run();
-        FlipSprite();
         Gravity();
         ResetJumps();
         Jump();
     }
+
+    #region Run
 
     #region KEY_DETECTION
         // Get the movement input value, this method runs in his thread
@@ -83,22 +87,6 @@ public class PlayerController : MonoBehaviour{
         public void OnJump (InputAction.CallbackContext value) => jumpingInput = value.ReadValueAsButton();
     #endregion
 
-
-  
-    #region Run
-    //make the movement positive and compare it with 0 Epsilon
-    private bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
-
-    private void FlipSprite()
-    {
-        if (IsRunning())
-        {
-            //Rotate de player using sign wich retur if the value is positive or negative
-            player.transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
-            //transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
-        }
-    }
-
     private void Run()
     {
         // Use the values getted in the function OnMove from the Input System
@@ -106,9 +94,10 @@ public class PlayerController : MonoBehaviour{
         rgBody.velocity = playerVelocity;
 
         // Activate the animation changin the boolean
-        animator.SetBool("isRunning", IsRunning());
+        animator.SetBool("isRunning", isRunning);
     }
     #endregion
+
 
     #region GRAVITY
     private void Gravity()
