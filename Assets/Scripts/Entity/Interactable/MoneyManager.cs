@@ -23,6 +23,10 @@ public class MoneyManager : MonoBehaviour
         moneyText = MoneyPanel.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
     }
 
+    void Update(){
+        moneyText.text = money.ToString();
+    }
+
     public void SetMoney(int _money)
     {
         money = _money;

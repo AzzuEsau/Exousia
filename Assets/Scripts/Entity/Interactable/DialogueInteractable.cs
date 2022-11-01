@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCInteractable : Interactable
+public class DialogueInteractable : Interactable
 {
 
     [SerializeField]
     private string _name;
     [SerializeField]
     private string[] _dialogue;
-
+    [SerializeField]
     private DialogueManager _dialogueManager; // *******************
 
     private void Start()
     {
-        _dialogueManager = FindObjectOfType<DialogueManager>(); //Sirve para singletons
         if (_dialogueManager == null)
         {
             Debug.LogWarning("No se encontro un DialogueManager en la escena");

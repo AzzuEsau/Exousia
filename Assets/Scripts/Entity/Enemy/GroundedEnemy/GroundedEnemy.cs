@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class GroundedEnemy : Enemy
 {
+    [SerializeField] 
+    protected Animator animator;
+
+    private Rigidbody2D rgBody;
+
     // Start is called before the first frame update
     void Start()
     {
+        rgBody = GetComponent<Rigidbody2D>();
         entityName = "grounded generico";
         gameObject.name = this.entityName;
     }
@@ -17,8 +23,9 @@ public class GroundedEnemy : Enemy
         if(hitted)
             return;
 
-
+        FlipSprite();
         Move();
+        animator.SetBool("isRunning", IsRunning());
     }
 
 
@@ -36,4 +43,18 @@ public class GroundedEnemy : Enemy
     {
         
     }
+
+    #region Run
+    //make the movement positive and compare it with 0 Epsilon
+    private bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
+
+    private void FlipSprite()
+    {
+        if (IsRunning())
+        {
+            //Rotate de player using sign wich retur if the value is positive or negative
+            transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
+        }
+    }
+    #endregion
 }

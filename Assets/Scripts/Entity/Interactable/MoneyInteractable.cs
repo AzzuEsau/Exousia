@@ -27,7 +27,6 @@ public class MoneyInteractable : Interactable
         // base.Interact();
         actualMoney = _moneyManager.GetMoney();
         actualMoney = actualMoney + _money;
-        Debug.Log(actualMoney);
         
         _moneyManager.SetMoney(actualMoney);
         //Usar un manejador de di�logos para mostrar los di�logos

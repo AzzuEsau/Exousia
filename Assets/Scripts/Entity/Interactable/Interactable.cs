@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
 
    public virtual void Interact()
    {
-        Debug.Log("Interactuando con alg�n objeto");
+        Debug.Log("Interactuando con algun objeto");
    }
 
 }
