@@ -55,7 +55,19 @@ public class Player : Entity
         playerController.Execute(true, isGrounded);
     }
 
-    
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("NPC") && Input.GetKeyUp(KeyCode.E))
+        {
+            DialogueInteractable npcInteraction = collision.GetComponent<DialogueInteractable>();
+
+            if(npcInteraction != null)
+            {
+                npcInteraction.Interact();
+            }
+        }
+    }
+
     #region INTERACTION
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -12,7 +12,7 @@ public class GroundedEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        rgBody = gameObject.GetComponent<Rigidbody2D>();
+        rgBody = GetComponent<Rigidbody2D>();
         entityName = "grounded generico";
         gameObject.name = this.entityName;
     }

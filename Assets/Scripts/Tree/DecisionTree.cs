@@ -102,7 +102,7 @@ public class DecisionTree : MonoBehaviour
 
     public void Start()
     {
-        DecisionTree tree = new DecisionTree ();
+        DecisionTree tree = new DecisionTree();
         FakeD1Initialize();
         tree.Insert(Decision);
         tree.Insert(Decision);

@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour
     // We get the text components of dialogue panel
     private TextMeshProUGUI dialogueText, nameText, continueButtonText;
     // We get the button of dialogue panel
-    private Button continueButton;
+    private Button continueButton, AcceptButton, DeclineButton;
 
     private List<string> dialogueList;
     private int dialogueID;
@@ -26,8 +26,10 @@ public class DialogueManager : MonoBehaviour
         dialogueText = dialoguePanel.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         nameText = dialoguePanel.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
 
-        //We get the third child of dialogue panel (Buttonn)
+        //We get the third child of dialogue panel (Button)
         continueButton = dialoguePanel.transform.GetChild(3).GetComponent<Button>();
+        AcceptButton = dialoguePanel.transform.GetChild(4).GetComponent<Button>();
+        DeclineButton = dialoguePanel.transform.GetChild(5).GetComponent<Button>();
         if (continueButton != null)
         {
             //add listener

@@ -21,6 +21,8 @@ public class DecisionController : MonoBehaviour
         {
             Decisions[i] = new DecisionList();
         }
+        FakeD1Initialize();
+        Debug.Log(GetJsonFormat());
     }
 
     public void FakeD1Initialize()
@@ -28,7 +30,7 @@ public class DecisionController : MonoBehaviour
         Decisions[0].name = "Poseidon keep trident";
         Decisions[0].time = 4000;
         Decisions[0].response = "yes";
-        Decisions[0].response = null;
+        Decisions[0].parent = null;
     }
 
     public void SetDecision(int decisionIndex, string name, int time, string response, string parent)

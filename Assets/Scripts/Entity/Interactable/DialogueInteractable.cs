@@ -9,12 +9,11 @@ public class DialogueInteractable : Interactable
     private string _name;
     [SerializeField]
     private string[] _dialogue;
-
+    [SerializeField]
     private DialogueManager _dialogueManager; // *******************
 
     private void Start()
     {
-        _dialogueManager = FindObjectOfType<DialogueManager>(); //Sirve para singletons
         if (_dialogueManager == null)
         {
             Debug.LogWarning("No se encontro un DialogueManager en la escena");
