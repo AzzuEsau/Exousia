@@ -27,6 +27,7 @@ public class Player : Entity
             //[SerializeField] protected PlayerRenderer playerRenderer;
             [SerializeField] protected bool isGrounded;
             [SerializeField] protected bool isRunning;
+            [SerializeField] protected bool interactInput;
             [SerializeField] protected LifeBar lifeBar;
 
     #region ATTRIBUTES
@@ -58,6 +59,9 @@ public class Player : Entity
         playerController.Execute(true, isGrounded, isRunning);
     }
 
+    
+    public void OnInteract(InputAction.CallbackContext value) => interactInput = value.ReadValueAsButton();
+
     //make the movement positive and compare it with 0 Epsilon
     private bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
 
@@ -73,7 +77,8 @@ public class Player : Entity
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("NPC") && Input.GetKeyUp(KeyCode.E))
+            Debug.Log(interactInput);
+        if (collision.gameObject.CompareTag("NPC") && interactInput)
         {
             DialogueInteractable npcInteraction = collision.GetComponent<DialogueInteractable>();
 

@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour{
         public void OnMove(InputAction.CallbackContext value) => moveInput = value.ReadValue<Vector2>();
 
         // Get the boolean if the button is pressed
-        public void OnJump (InputAction.CallbackContext value) => jumpingInput = value.ReadValueAsButton();
+        public void OnJump(InputAction.CallbackContext value) => jumpingInput = value.ReadValueAsButton();
     #endregion
 
     private void Run()

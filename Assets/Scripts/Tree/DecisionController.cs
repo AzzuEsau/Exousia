@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DecisionController : MonoBehaviour
 {
+
+    public static GameManager Instance;
     [SerializeField]
     private DecisionList[] Decisions;
 
@@ -12,6 +14,13 @@ public class DecisionController : MonoBehaviour
     private int _time = -1;
     private string _parent = null;
     private string _response = null;
+
+    private void Awake()
+    {
+        if(Instance == null){
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
