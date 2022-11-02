@@ -4,109 +4,108 @@ using UnityEngine;
 
 public class DecisionController : MonoBehaviour
 {
+    // public static GameManager Instance;
+    // [SerializeField]
+    // private DecisionList[] Decisions;
 
-    public static GameManager Instance;
-    [SerializeField]
-    private DecisionList[] Decisions;
+    // private int _numDecisions = 10;
+    // private string _name = "";
+    // private int _time = -1;
+    // private string _parent = null;
+    // private string _response = null;
 
-    private int _numDecisions = 10;
-    private string _name = "";
-    private int _time = -1;
-    private string _parent = null;
-    private string _response = null;
+    // private void Awake()
+    // {
+    //     if(Instance == null){
+    //         Instance = this;
+    //     }
+    // }
 
-    private void Awake()
-    {
-        if(Instance == null){
-            Instance = this;
-        }
-    }
+    // private void Start()
+    // {
+    //     Decisions = new DecisionList[_numDecisions];
 
-    private void Start()
-    {
-        Decisions = new DecisionList[_numDecisions];
+    //     for (int i = 0; i < _numDecisions; i++)
+    //     {
+    //         Decisions[i] = new DecisionList();
+    //     }
+    //     FakeD1Initialize();
+    //     Debug.Log(GetJsonFormat());
+    // }
 
-        for (int i = 0; i < _numDecisions; i++)
-        {
-            Decisions[i] = new DecisionList();
-        }
-        FakeD1Initialize();
-        Debug.Log(GetJsonFormat());
-    }
+    // public void FakeD1Initialize()
+    // {
+    //     Decisions[0].name = "Poseidon keep trident";
+    //     Decisions[0].time = 4000;
+    //     Decisions[0].response = "yes";
+    //     Decisions[0].parent = null;
+    // }
 
-    public void FakeD1Initialize()
-    {
-        Decisions[0].name = "Poseidon keep trident";
-        Decisions[0].time = 4000;
-        Decisions[0].response = "yes";
-        Decisions[0].parent = null;
-    }
+    // public void SetDecision(int decisionIndex, string name, int time, string response, string parent)
+    // {
+    //     decisionIndex = decisionIndex - 1;
+    //     Decisions[decisionIndex].name = name;
+    //     Decisions[decisionIndex].time = time;
+    //     Decisions[decisionIndex].response = response;
+    //     Decisions[decisionIndex].parent = parent;
+    // }
 
-    public void SetDecision(int decisionIndex, string name, int time, string response, string parent)
-    {
-        decisionIndex = decisionIndex - 1;
-        Decisions[decisionIndex].name = name;
-        Decisions[decisionIndex].time = time;
-        Decisions[decisionIndex].response = response;
-        Decisions[decisionIndex].parent = parent;
-    }
+    // public string GetDecisionName(int decision)
+    // {
+    //     decision = decision - 1;
+    //     _name = Decisions[decision].name;
+    //     return _name;
+    // }
 
-    public string GetDecisionName(int decision)
-    {
-        decision = decision - 1;
-        _name = Decisions[decision].name;
-        return _name;
-    }
+    // public int GetDecisionTime(int decision)
+    // {
+    //     decision = decision - 1;
+    //     _time = Decisions[decision].time;
+    //     return _time;
+    // }
 
-    public int GetDecisionTime(int decision)
-    {
-        decision = decision - 1;
-        _time = Decisions[decision].time;
-        return _time;
-    }
+    // public string GetDecisionResponse(int decision)
+    // {
+    //     decision = decision - 1;
+    //     _response = Decisions[decision].response;
+    //     return _response;
+    // }
 
-    public string GetDecisionResponse(int decision)
-    {
-        decision = decision - 1;
-        _response = Decisions[decision].response;
-        return _response;
-    }
+    // public string GetDecisionParent(int decision)
+    // {
+    //     decision = decision - 1;
+    //     _parent = Decisions[decision].parent;
+    //     return _parent;
+    // }
 
-    public string GetDecisionParent(int decision)
-    {
-        decision = decision - 1;
-        _parent = Decisions[decision].parent;
-        return _parent;
-    }
+    // public string GetDecisionJsonData(int decision)
+    // {
+    //     decision = decision - 1;
+    //     return GetJsonData(Decisions[decision]);
+    // }
 
-    public string GetDecisionJsonData(int decision)
-    {
-        decision = decision - 1;
-        return GetJsonData(Decisions[decision]);
-    }
+    // public void SetDecisionJsonData(string json,int decision)
+    // {
+    //     decision = decision - 1;
+    //     Decisions[decision] = JsonUtility.FromJson<DecisionList>(json);
+    // }
 
-    public void SetDecisionJsonData(string json,int decision)
-    {
-        decision = decision - 1;
-        Decisions[decision] = JsonUtility.FromJson<DecisionList>(json);
-    }
+    // public string GetJsonData(DecisionList decision)
+    // {
+    //     return JsonUtility.ToJson(decision);
+    // }
 
-    public string GetJsonData(DecisionList decision)
-    {
-        return JsonUtility.ToJson(decision);
-    }
-
-    public string GetJsonFormat()
-    {
-        DecisionListGroup decisionListGroup = new DecisionListGroup(Decisions);
+    // public string GetJsonFormat()
+    // {
+    //     DecisionListGroup decisionListGroup = new DecisionListGroup(Decisions);
  
-        return JsonUtility.ToJson(decisionListGroup);
-    }
+    //     return JsonUtility.ToJson(decisionListGroup);
+    // }
 
-    public void SetJsonFormat(string json)
-    {
-        DecisionListGroup decisionListGroup = JsonUtility.FromJson<DecisionListGroup>(json);
-        Decisions = decisionListGroup.decisionList;
-    }
+    // public void SetJsonFormat(string json)
+    // {
+    //     DecisionListGroup decisionListGroup = JsonUtility.FromJson<DecisionListGroup>(json);
+    //     Decisions = decisionListGroup.decisionList;
+    // }
 
 }
