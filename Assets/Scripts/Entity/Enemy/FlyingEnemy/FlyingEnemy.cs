@@ -6,10 +6,12 @@ public class FlyingEnemy : Enemy
 {
     [SerializeField] protected float floatSpeed;
     protected bool isSuspending = false;
+    private Rigidbody2D rgBody;
 
     // Start is called before the first frame update
     void Start()
     {
+        rgBody = GetComponent<Rigidbody2D>();
         entityName = "flying generico";
         gameObject.name = this.entityName;
     }
@@ -21,6 +23,7 @@ public class FlyingEnemy : Enemy
             return;
 
         Move();
+        FlipSprite();
     }
 
     protected override void Move()
@@ -44,6 +47,20 @@ public class FlyingEnemy : Enemy
         else
             StartCoroutine(fly(.25f, -floatSpeed * 2));
     }
+
+    #region Run
+    //make the movement positive and compare it with 0 Epsilon
+    private bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
+
+    private void FlipSprite()
+    {
+        if (IsRunning())
+        {
+            //Rotate de player using sign wich retur if the value is positive or negative
+            transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
+        }
+    }
+    #endregion
 
 
     protected IEnumerator fly(float seconds, float direction)
