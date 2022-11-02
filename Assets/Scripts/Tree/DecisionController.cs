@@ -93,13 +93,13 @@ public class DecisionController : MonoBehaviour
     {
         DecisionListGroup decisionListGroup = new DecisionListGroup(Decisions);
  
-        return JsonUtility.ToJson(decisionListGroup);
-    }
+    //     return JsonUtility.ToJson(decisionListGroup);
+    // }
 
-    public void SetJsonFormat(string json)
-    {
-        DecisionListGroup decisionListGroup = JsonUtility.FromJson<DecisionListGroup>(json);
-        Decisions = decisionListGroup.decisionList;
-    }
+    // public void SetJsonFormat(string json)
+    // {
+    //     DecisionListGroup decisionListGroup = JsonUtility.FromJson<DecisionListGroup>(json);
+    //     Decisions = decisionListGroup.decisionList;
+    // }
 
 }
