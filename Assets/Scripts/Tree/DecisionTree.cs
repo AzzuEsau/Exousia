@@ -109,12 +109,12 @@ public class DecisionTree : MonoBehaviour
         tree.Insert(Decision);
         tree.Insert(Decision);
         tree.Insert(Decision);
-        Debug.Log("Impresion preorden: ");
-        tree.PrintPrev ();
-        Debug.Log("Impresion entreorden: ");
-        tree.printInside ();
-        Debug.Log("Impresion postorden: ");
-        tree.printNext ();
+        // Debug.Log("Impresion preorden: ");
+        // tree.PrintPrev ();
+        // Debug.Log("Impresion entreorden: ");
+        // tree.printInside ();
+        // Debug.Log("Impresion postorden: ");
+        // tree.printNext ();
     }
 
     public void FakeD1Initialize()
