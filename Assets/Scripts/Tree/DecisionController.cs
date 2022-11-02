@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DecisionController : MonoBehaviour
 {
-
-    public static GameManager Instance;
     [SerializeField]
     private DecisionList[] Decisions;
 
@@ -15,13 +13,6 @@ public class DecisionController : MonoBehaviour
     private string _parent = null;
     private string _response = null;
 
-    private void Awake()
-    {
-        if(Instance == null){
-            Instance = this;
-        }
-    }
-
     private void Start()
     {
         Decisions = new DecisionList[_numDecisions];
@@ -30,8 +21,6 @@ public class DecisionController : MonoBehaviour
         {
             Decisions[i] = new DecisionList();
         }
-        FakeD1Initialize();
-        Debug.Log(GetJsonFormat());
     }
 
     public void FakeD1Initialize()
@@ -49,6 +38,10 @@ public class DecisionController : MonoBehaviour
         Decisions[decisionIndex].time = time;
         Decisions[decisionIndex].response = response;
         Decisions[decisionIndex].parent = parent;
+        Debug.Log(name);
+        Debug.Log(time);
+        Debug.Log(response);
+        Debug.Log(parent);
     }
 
     public string GetDecisionName(int decision)

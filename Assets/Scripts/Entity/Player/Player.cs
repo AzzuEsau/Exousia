@@ -77,7 +77,6 @@ public class Player : Entity
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-            Debug.Log(interactInput);
         if (collision.gameObject.CompareTag("NPC") && interactInput)
         {
             DialogueInteractable npcInteraction = collision.GetComponent<DialogueInteractable>();
@@ -94,12 +93,20 @@ public class Player : Entity
     {
         if(collision.gameObject.CompareTag("Interactable"))
         {
+            ImportantObjectsInteractable ImportantObjsInt = collision.GetComponent<ImportantObjectsInteractable>();
+          
+            if(ImportantObjsInt != null)
+            {
+                ImportantObjsInt.Interact();
+            }
+            
             MoneyInteractable moneyInteraction = collision.GetComponent<MoneyInteractable>();
           
             if(moneyInteraction != null)
             {
                 moneyInteraction.Interact();
             }
+
         }
 }
     #endregion

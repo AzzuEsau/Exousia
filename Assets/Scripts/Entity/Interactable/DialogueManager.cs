@@ -10,48 +10,71 @@ public class DialogueManager : MonoBehaviour
     private GameObject dialoguePanel;
     #pragma warning restore 0649
 
+    private DecisionController decisionController;
+
+    private GameObject continueGameObj, exitGameObj, acceptGameObj, declineGameObj;
     // We get the text components of dialogue panel
-    private TextMeshProUGUI dialogueText, nameText, continueButtonText;
+    private TextMeshProUGUI dialogueText, nameText;
     // We get the button of dialogue panel
-    private Button continueButton, AcceptButton, DeclineButton;
+    private Button continueButton, exitButton, acceptButton, declineButton;
 
     private List<string> dialogueList;
     private int dialogueID;
     private string nameNPC;
 
+    int decisionInArr;
+    int decisionIndex;
+    string nameDecision;
+    string parentDecision;
+    int seconds;
+    bool decisionActive;
+    string response;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager _gameManager = FindObjectOfType<GameManager>();
+        decisionController = _gameManager.GetDecisionController();
         dialogueText = dialoguePanel.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         nameText = dialoguePanel.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
 
         //We get the third child of dialogue panel (Button)
-        continueButton = dialoguePanel.transform.GetChild(3).GetComponent<Button>();
-        AcceptButton = dialoguePanel.transform.GetChild(4).GetComponent<Button>();
-        DeclineButton = dialoguePanel.transform.GetChild(5).GetComponent<Button>();
+        continueGameObj = dialoguePanel.transform.GetChild(3).gameObject;
+        exitGameObj = dialoguePanel.transform.GetChild(4).gameObject;
+        acceptGameObj = dialoguePanel.transform.GetChild(5).gameObject;
+        declineGameObj = dialoguePanel.transform.GetChild(6).gameObject;
+
+        continueButton = continueGameObj.GetComponent<Button>();
+        exitButton = exitGameObj.GetComponent<Button>();
+        acceptButton = acceptGameObj.GetComponent<Button>();
+        declineButton = declineGameObj.GetComponent<Button>();
+
         if (continueButton != null)
         {
-            //add listener
-            continueButtonText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
-            if (continueButtonText != null)
-            {
-                continueButtonText.text = "Continuar";
-            }
+            selectButtonsActive("continue");
         }
 
         dialoguePanel.SetActive(false);
+        exitButton.onClick.AddListener(delegate { ContinueDialogue(); });
         continueButton.onClick.AddListener(delegate { ContinueDialogue(); });
+        acceptButton.onClick.AddListener(delegate { Accept(); });
+        declineButton.onClick.AddListener(delegate { Reject(); });
+
     }
 
-    public void SetDialogue(string _name, string[] dialogue)
+    public void SetDialogue(string nameNPC, string[] dialogue, int decisionInArr, int decisionIndex, string nameDecision, string parentDecision)
     {
-        nameNPC = _name;
+        nameText.text = nameNPC;
         dialogueList = new List<string>(dialogue.Length);
         dialogueList.AddRange(dialogue);
         dialogueID = 0;
-        nameText.text = nameNPC;
-        continueButtonText.text = "Continuar";
+        selectButtonsActive("continue");
+
+        this.decisionInArr = decisionInArr;
+        this.nameDecision = nameDecision;
+        this.decisionIndex = decisionIndex;
+        this.parentDecision = parentDecision;
+        
 
         ShowDialogue();
         dialoguePanel.SetActive(true);
@@ -62,24 +85,65 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = dialogueList[dialogueID];
     }
 
+    public void Accept(){
+        response = "yes";
+        ContinueDialogue();
+    }
+
+    public void Reject(){
+        response = "no";
+        ContinueDialogue();
+    }
+
     public void ContinueDialogue()
     {
+        if (dialogueID == decisionInArr){
+            decisionController.SetDecision(decisionIndex, nameDecision, seconds * 1000, response, parentDecision);
+            decisionActive = false;
+        }
+
+
         if (dialogueID == dialogueList.Count - 1)//Se termina
         {
             dialoguePanel.SetActive(false);
         }
         else if (dialogueID == dialogueList.Count - 2)//Uno antes de terminar
         {
-            continueButtonText.text = "Salir";
+            selectButtonsActive("exit");
+            dialogueID++;
+            ShowDialogue();
+        }
+        else if (dialogueID == decisionInArr - 1){ // Uno antes de la decision
+            selectButtonsActive("decision");
+            seconds = 0;
+            decisionActive = true;
+            StartCoroutine(SecondsOfDecision());
             dialogueID++;
             ShowDialogue();
         }
         else
         {
+            selectButtonsActive("continue");
             dialogueID++;
             ShowDialogue();
         }
 
     }
 
+    private void selectButtonsActive(string config){
+        continueGameObj.SetActive(config == "continue");
+        exitGameObj.SetActive(config == "exit");
+        acceptGameObj.SetActive(config == "decision");
+        declineGameObj.SetActive(config == "decision");
+    }
+
+
+    IEnumerator SecondsOfDecision(){
+        while(decisionActive){
+            Debug.Log("hoo");
+            yield return new WaitForSeconds(1);
+            seconds++;
+        }
+
+    }
 }
