@@ -73,7 +73,7 @@ public class Player : Entity
 
     private void FlipSprite()
     {
-        if (IsRunning())
+        if (IsRunning() && playerController.moveInputX() != 0)
         {
             //Rotate de player using sign wich retur if the value is positive or negative
             transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
@@ -92,23 +92,22 @@ public class Player : Entity
                 npcInteraction.Interact();
             }
         }
-
-        // if (collision.gameObject.CompareTag("Enemy") && isAttacking)
-        // {
-        //     FlyingEnemy flyingEnemy = collision.GetComponent<FlyingEnemy>();
-        //     GroundedEnemy groundedEnemy = collision.GetComponent<GroundedEnemy>();
-
-        //     if(flyingEnemy != null)
-        //     {
-        //         flyingEnemy.Hurt(gameObject.GetComponent<Entity>(), damage);
-        //     }
-
-        //     if(groundedEnemy != null)
-        //     {
-        //         groundedEnemy.Hurt(gameObject.GetComponent<Entity>(), damage);
-        //     }
-        // }
     }
+
+    // public override bool OnHurt(float damage, GameObject source)
+    // {
+    //         if(life > 1 )
+    //         {
+    //             DecreaseLife(damage);
+    //             // StartCoroutine(KnockBack(.5f, source));
+    //             return true;
+    //         }
+    //         else
+    //             Destroy(gameObject, 0.2f);
+
+    //         return false;
+
+    // }
 
     #region INTERACTION
     private void OnTriggerEnter2D(Collider2D collision)

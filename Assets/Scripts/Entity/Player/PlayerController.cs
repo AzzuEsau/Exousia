@@ -92,15 +92,20 @@ public class PlayerController : MonoBehaviour{
         public void OnJump(InputAction.CallbackContext value) => jumpingInput = value.ReadValueAsButton();
     #endregion
 
-    private void Run()
-    {
-        // Use the values getted in the function OnMove from the Input System
-        Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
-        rgBody.velocity = playerVelocity;
+        private void Run()
+        {
+            // Use the values getted in the function OnMove from the Input System
+            Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
+            rgBody.velocity = playerVelocity;
 
-        // Activate the animation changin the boolean
-        animator.SetBool("isRunning", isRunning);
-    }
+            // Activate the animation changin the boolean
+            animator.SetBool("isRunning", isRunning);
+        }
+
+        public float moveInputX()
+        {
+            return moveInput.x;
+        }
     #endregion
 
 
