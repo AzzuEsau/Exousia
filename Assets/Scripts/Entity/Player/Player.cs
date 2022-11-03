@@ -11,6 +11,7 @@ public class Player : Entity
             [SerializeField] protected PlayerInput playerInput;
             [SerializeField] protected Transform trans;
             [SerializeField] protected Rigidbody2D rgBody;
+            [SerializeField] protected int maxLife = 6;
 
     [Header ("Colliders")]
             [SerializeField] protected CapsuleCollider2D mainCollider;
@@ -151,5 +152,5 @@ public class Player : Entity
 
     public bool IsAttacking() => isAttacking;
 
-
+    public void increaselife(int increase) => this.life = this.life + increase > maxLife ? maxLife : this.life + increase;
 }
