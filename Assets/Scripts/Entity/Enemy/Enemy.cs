@@ -34,7 +34,7 @@ public class Enemy : Entity
     }
 
     protected IEnumerator HurtInSeconds(Entity entity, float damage){
-            yield return new WaitForSeconds(1/2);
+            yield return new WaitForSeconds(1);
             hittedT = false;
             Hurt(entity, damage);
     }

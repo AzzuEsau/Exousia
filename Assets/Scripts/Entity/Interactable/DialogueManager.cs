@@ -140,6 +140,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator SecondsOfDecision(){
         while(decisionActive){
+            Debug.Log("hoo");
             yield return new WaitForSeconds(1);
             seconds++;
         }
