@@ -103,6 +103,8 @@ public class Player : Entity
             StartCoroutine(KnockBack(.5f, source));
             if(life == 0)
             {
+                UpdateLife();
+                Destroy(gameObject, 0.2f);
                 // Aqui matar al personaje y poner la pantalla principal
             }
         
