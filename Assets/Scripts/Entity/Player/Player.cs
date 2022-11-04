@@ -95,20 +95,21 @@ public class Player : Entity
         }
     }
 
-    // public override bool OnHurt(float damage, GameObject source)
-    // {
-    //         if(life > 1 )
-    //         {
-    //             DecreaseLife(damage);
-    //             // StartCoroutine(KnockBack(.5f, source));
-    //             return true;
-    //         }
-    //         else
-    //             Destroy(gameObject, 0.2f);
-
-    //         return false;
-
-    // }
+    public override bool OnHurt(float damage, GameObject source)
+    {
+        if(life > 0 )
+        {
+            DecreaseLife(damage);
+            StartCoroutine(KnockBack(.5f, source));
+            if(life == 0)
+            {
+                // Aqui matar al personaje y poner la pantalla principal
+            }
+        
+            return true;
+        }
+        return false;
+    }
 
     #region INTERACTION
     private void OnTriggerEnter2D(Collider2D collision)
