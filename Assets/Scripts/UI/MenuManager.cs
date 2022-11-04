@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     public void LoadGame()
     {
         // SceneManager.LoadScene("Game");
-        SceneManager.LoadScene("TestMap H");
+        SceneManager.LoadScene("level_0");
     }
 
     public void LoadMainMenu()

@@ -15903,7 +15903,7 @@ MonoBehaviour:
   - Soy Prometeo
   - asd
   - asd
-  decisionInArr: 3
+  decisionInArr: 2
   decisionIndex: 3
   nameDecision: Trident
   parentDecision: Zeus
@@ -16781,10 +16781,10 @@ RectTransform:
   m_Father: {fileID: 864639422}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -244.59, y: 49}
-  m_SizeDelta: {x: 184.17, y: 40.27}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 123.099976, y: -128.82}
+  m_SizeDelta: {x: 184.16998, y: 40.26999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054916604
 MonoBehaviour:
@@ -17182,6 +17182,7 @@ MonoBehaviour:
   playerInput: {fileID: 552278598}
   trans: {fileID: 2113669588}
   rgBody: {fileID: 2113669590}
+  maxLife: 6
   mainCollider: {fileID: 1748974076}
   floorColliderDetector: {fileID: 349248469}
   attackCollider: {fileID: 0}
@@ -17353,7 +17354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2118504174
 SpriteRenderer:
   m_ObjectHideFlags: 0
