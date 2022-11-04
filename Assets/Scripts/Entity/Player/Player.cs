@@ -61,7 +61,7 @@ public class Player : Entity
         isGrounded = IsGrounded();
         isRunning = IsRunning();
         isAttacking = attackInput;
-        playerController.Execute(true, isGrounded, isRunning, isAttacking);
+        playerController.Execute(life > 0, isGrounded, isRunning, isAttacking);
     }
 
     
