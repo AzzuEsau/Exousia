@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
@@ -104,8 +105,9 @@ public class Player : Entity
             if(life == 0)
             {
                 UpdateLife();
+                // Changes the scene to the "Game over" screen
+                SceneManager.LoadScene("GameOver");
                 Destroy(gameObject, 0.2f);
-                // Aqui matar al personaje y poner la pantalla principal
             }
         
             return true;
