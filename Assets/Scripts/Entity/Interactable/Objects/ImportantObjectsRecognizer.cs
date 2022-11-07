@@ -51,14 +51,24 @@ public class ImportantObjectsRecognizer : Interactable
         stateObjects = !stateObjects;
         int j=0;
 
+        if(indexes != null){
+            Debug.Log(indexes.Length);
+            Debug.Log(indexes[0]);
+        }
+
+
         for(int i = 0; i < objectsAffected.Length; i++){
-            if(indexes == null || (indexes[j] == i)){
-                if(decisionResponse == "yes"){
+            if(indexes == null){
+                objectsAffected[i].SetActive(stateObjects);
+            }else{
+                if(j <= indexes.Length-1 && (indexes[j] == i)){
+                    if(decisionResponse == "yes"){
+                        objectsAffected[i].SetActive(stateObjects);
+                    }
+                    j++;   
+                }else if(decisionResponse == "no"){
                     objectsAffected[i].SetActive(stateObjects);
                 }
-                j++;   
-            }else if(decisionResponse == "no"){
-                objectsAffected[i].SetActive(stateObjects);
             }
         }
     }
@@ -66,11 +76,11 @@ public class ImportantObjectsRecognizer : Interactable
     
     IEnumerator CheckIfDecisionWasTaked(){
         while(decisionWasntTaked){
-            // decisionName = decisionController.GetDecisionName(DecisionIndex);
-            // decisionResponse = decisionController.GetDecisionResponse(DecisionIndex);
-            // decisionWasntTaked = (decisionName != "");
+            decisionName = decisionController.GetDecisionName(DecisionIndex);
+            decisionResponse = decisionController.GetDecisionResponse(DecisionIndex);
+            decisionWasntTaked = (decisionName == null);
             yield return new WaitForSeconds(2);
-            // Debug.Log("checked");
+            Debug.Log("checked");
         }
         ActivateOrDeactivate(indexOfObjectsAffected);
     }

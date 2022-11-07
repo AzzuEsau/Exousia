@@ -8,7 +8,7 @@ public class DecisionController : MonoBehaviour
     private DecisionList[] Decisions;
 
     private int _numDecisions = 10;
-    private string _name = "";
+    private string _name = null;
     private int _time = -1;
     private string _parent = null;
     private string _response = null;
@@ -47,6 +47,7 @@ public class DecisionController : MonoBehaviour
     public string GetDecisionName(int decision)
     {
         decision = decision - 1;
+        Debug.Log(Decisions.Length > decision);
         if(Decisions.Length > decision){
             _name = Decisions[decision].name;
         }
