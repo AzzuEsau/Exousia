@@ -19,11 +19,11 @@ public class DialogueInteractable : Interactable
     [SerializeField]
     string parentDecision;
     
-    private DialogueManager _dialogueManager; // *******************
+    private DialogueManager _dialogueManager;
 
     private void Start()
     {
-        _dialogueManager = FindObjectOfType<DialogueManager>(); //Sirve para singletons
+        _dialogueManager = FindObjectOfType<DialogueManager>();
         if (_dialogueManager == null)
         {
             Debug.LogWarning("No se encontro un DialogueManager en la escena");

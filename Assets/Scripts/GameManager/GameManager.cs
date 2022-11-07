@@ -19,7 +19,7 @@ public class GameManager : GenericSingletonClass<GameManager>
     public DecisionController FindDecisionController()
     {
         DecisionController component = FindObjectOfType<DecisionController>();
-        string compName = "Dialogue Manager";
+        string compName = "Decision Controller";
         if(component==null)
         {
             Debug.LogWarning(_notFoundMessage + compName);

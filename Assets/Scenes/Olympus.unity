@@ -1259,6 +1259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 438056592}
+  - component: {fileID: 438056593}
   m_Layer: 5
   m_Name: ImportantObjectsManager
   m_TagString: Untagged
@@ -1290,6 +1291,22 @@ RectTransform:
   m_AnchoredPosition: {x: 393.91, y: -227.92}
   m_SizeDelta: {x: 271.78, y: 84.97}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &438056593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438056591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc1ef9c6f7ce8945ace038cc979ca70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Trident: {fileID: 352719521}
+  Glasses: {fileID: 139808002}
+  GoldenApple: {fileID: 1011892988}
+  RippleHook: {fileID: 1296583597}
 --- !u!1 &514078786
 GameObject:
   m_ObjectHideFlags: 0
@@ -14372,8 +14389,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: -917467767
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!1 &1322155687
 GameObject:
@@ -15168,7 +15185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1614371480}
   m_Layer: 0
-  m_Name: UI_Controller (1)
+  m_Name: UI_Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15866,6 +15883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1729058874}
+  - component: {fileID: 1729058876}
   - component: {fileID: 1729058875}
   m_Layer: 5
   m_Name: GameManager
@@ -15906,6 +15924,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f92c216f6d8fd84fa03169f966046be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1729058876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729058873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9d99ecf59eea14ea23bc9ee9855ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Decisions:
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
+  - name: 
+    time: 0
+    response: 
+    parent: 
 --- !u!1 &1736672163
 GameObject:
   m_ObjectHideFlags: 0

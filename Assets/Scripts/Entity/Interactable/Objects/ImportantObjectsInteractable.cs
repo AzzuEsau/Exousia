@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ImportantObjectsInteractable : Interactable
 {
-
+   
     [SerializeField]
     private string theObject;
 
@@ -19,19 +19,19 @@ public class ImportantObjectsInteractable : Interactable
 
     private DecisionController decisionController;
 
-    private ImportantObjectsManager _importantObjectsManager; // *******************
+    private ImportantObjectsManager _importantObjectsManager;
 
     private void Start()
     {
         GameManager _gameManager = FindObjectOfType<GameManager>();
         decisionController = _gameManager.GetDecisionController();
-        _importantObjectsManager = FindObjectOfType<ImportantObjectsManager>(); //Sirve para singletons
+        _importantObjectsManager = FindObjectOfType<ImportantObjectsManager>();
         if (_importantObjectsManager == null)
         {
             Debug.LogWarning("No se encontro un ImportantObjectsManager en la escena");
         }
-    }
 
+    }
 
     public override void Interact()
     {
@@ -40,5 +40,6 @@ public class ImportantObjectsInteractable : Interactable
         Destroy(gameObject, 0.1f);
         
     }
+
 
 }
