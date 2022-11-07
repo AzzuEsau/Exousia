@@ -47,21 +47,27 @@ public class DecisionController : MonoBehaviour
     public string GetDecisionName(int decision)
     {
         decision = decision - 1;
-        _name = Decisions[decision].name;
+        if(Decisions.Length > decision){
+            _name = Decisions[decision].name;
+        }
         return _name;
     }
 
     public int GetDecisionTime(int decision)
     {
         decision = decision - 1;
-        _time = Decisions[decision].time;
+        if(Decisions.Length > decision){
+            _time = Decisions[decision].time;
+        }
         return _time;
     }
 
     public string GetDecisionResponse(int decision)
     {
         decision = decision - 1;
-        _response = Decisions[decision].response;
+        if(Decisions.Length > decision){
+            _response = Decisions[decision].response;
+        }
         return _response;
     }
 

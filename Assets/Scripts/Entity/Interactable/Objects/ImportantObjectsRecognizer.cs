@@ -20,10 +20,8 @@ public class ImportantObjectsRecognizer : Interactable
     private string decisionName;
     private string decisionResponse;
 
-
     [SerializeField]
     private int DecisionIndex;
-
 
     private DecisionController decisionController;
 
@@ -68,11 +66,11 @@ public class ImportantObjectsRecognizer : Interactable
     
     IEnumerator CheckIfDecisionWasTaked(){
         while(decisionWasntTaked){
-            decisionName = decisionController.GetDecisionName(DecisionIndex);
-            decisionResponse = decisionController.GetDecisionResponse(DecisionIndex);
+            // decisionName = decisionController.GetDecisionName(DecisionIndex);
+            // decisionResponse = decisionController.GetDecisionResponse(DecisionIndex);
             // decisionWasntTaked = (decisionName != "");
-            yield return new WaitForSeconds(30);
-            Debug.Log("checked");
+            yield return new WaitForSeconds(2);
+            // Debug.Log("checked");
         }
         ActivateOrDeactivate(indexOfObjectsAffected);
     }
