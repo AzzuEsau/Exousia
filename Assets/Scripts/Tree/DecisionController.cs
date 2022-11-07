@@ -47,7 +47,6 @@ public class DecisionController : MonoBehaviour
     public string GetDecisionName(int decision)
     {
         decision = decision - 1;
-        Debug.Log(Decisions.Length > decision);
         if(Decisions.Length > decision){
             _name = Decisions[decision].name;
         }

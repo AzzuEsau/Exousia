@@ -42,7 +42,6 @@ public class ImportantObjectsRecognizer : Interactable
         {
             Debug.LogWarning("No se encontro un ImportantObjectsManager en la escena");
         }
-        Debug.Log("Coroutine started");
         StartCoroutine(CheckIfDecisionWasTaked());
 
     }
@@ -50,12 +49,6 @@ public class ImportantObjectsRecognizer : Interactable
     public void ActivateOrDeactivate(int[] indexes){
         stateObjects = !stateObjects;
         int j=0;
-
-        if(indexes != null){
-            Debug.Log(indexes.Length);
-            Debug.Log(indexes[0]);
-        }
-
 
         for(int i = 0; i < objectsAffected.Length; i++){
             if(indexes == null){
@@ -80,7 +73,6 @@ public class ImportantObjectsRecognizer : Interactable
             decisionResponse = decisionController.GetDecisionResponse(DecisionIndex);
             decisionWasntTaked = (decisionName == null);
             yield return new WaitForSeconds(2);
-            Debug.Log("checked");
         }
         ActivateOrDeactivate(indexOfObjectsAffected);
     }
