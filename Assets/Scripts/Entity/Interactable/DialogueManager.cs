@@ -35,6 +35,7 @@ public class DialogueManager : MonoBehaviour
     {
         GameManager _gameManager = FindObjectOfType<GameManager>();
         decisionController = _gameManager.GetDecisionController();
+        
         nameText = dialoguePanel.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
         dialogueText = dialoguePanel.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
 
