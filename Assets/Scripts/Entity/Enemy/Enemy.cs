@@ -26,7 +26,6 @@ public class Enemy : Entity
         if(collision.gameObject.CompareTag("HitAreaPlayer"))
         {
             if(player.IsAttacking() && !hittedT){
-                StartCoroutine(KnockBack(.5f, collision.gameObject));
                 StartCoroutine(HurtInSeconds(gameObject.GetComponent<Entity>(), 1));
                 hittedT = true;
             }
