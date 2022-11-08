@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;//************** agregar para mover botones y texto
 using TMPro; // ********* Esto para crear objetos tipo TextMeshPro
 
-public class KillManager : MonoBehaviour
+public class KillsManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject KillPanel;
@@ -27,7 +27,7 @@ public class KillManager : MonoBehaviour
         killText.text = kill.ToString();
     }
 
-    public void Setkill(int _kill)
+    public void SetKill(int _kill)
     {
         kill = _kill;
         killText.text = kill.ToString();

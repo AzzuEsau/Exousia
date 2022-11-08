@@ -9,7 +9,7 @@ public class Enemy : Entity
         [SerializeField] protected LayerMask playerLayer;
         [SerializeField] protected Player player;
         private bool hittedT = false;
-
+        private KillsManager kills;
 
     protected void OnCollisionEnter2D(Collision2D other) 
     {
@@ -54,5 +54,28 @@ public class Enemy : Entity
         return Vector2.Distance(transform.position, player.GetTransform().position);
     }
 
+    public override bool OnHurt(float damage, GameObject source)
+    { 
+        
+        if(life > 0 )
+        {
+            DecreaseLife(damage);
+            if(life == 0)
+            {
+                GameManager _gameManager = FindObjectOfType<GameManager>();
+                kills = _gameManager.GetKillsManager();
+                kills.SetKill(1);
+                Destroy(gameObject,0.2f);
+                
+                return true;
+            }
+
+            StartCoroutine(KnockBack(.5f, source));
+            return true;
+        }
+        return false;
+    }
+
     protected virtual void Move() { }
+
 }
