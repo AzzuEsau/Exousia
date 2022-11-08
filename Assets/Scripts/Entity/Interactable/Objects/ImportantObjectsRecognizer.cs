@@ -38,6 +38,10 @@ public class ImportantObjectsRecognizer : Interactable
         GameManager _gameManager = FindObjectOfType<GameManager>();
         decisionController = _gameManager.GetDecisionController();
         _importantObjectsManager = FindObjectOfType<ImportantObjectsManager>();
+
+        if(decisionController == null)
+            decisionController = FindObjectOfType<DecisionController>();
+
         if (_importantObjectsManager == null)
         {
             Debug.LogWarning("No se encontro un ImportantObjectsManager en la escena");
