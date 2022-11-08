@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     public void LoadGame()
     {
         // SceneManager.LoadScene("Game");
-        SceneManager.LoadScene("level_0");
+        SceneManager.LoadScene("Olympus");
     }
 
     public void LoadMainMenu()
