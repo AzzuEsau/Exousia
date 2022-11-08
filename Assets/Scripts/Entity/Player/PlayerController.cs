@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour{
                 protected Animator animator;
                 [SerializeField]
                 protected GameObject player;
+                [SerializeField]
+                protected GameObject dialoge;
 
     #endregion
 
@@ -68,7 +70,7 @@ public class PlayerController : MonoBehaviour{
 
     public void Execute(bool isAlive, bool isGrounded, bool isRunning, bool isAttacking)
     {
-        if(!isAlive)
+        if(!isAlive || dialoge.activeInHierarchy)
             return;
 
         this.isGrounded = isGrounded;
