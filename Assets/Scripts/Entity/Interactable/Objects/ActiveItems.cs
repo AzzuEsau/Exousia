@@ -6,9 +6,16 @@ public class ActiveItems : Interactable
 {
     [SerializeField]
     private GameObject[] objectsAffected;
+    
+    [SerializeField]
+    private bool notAffectAllObjects;
+    
+    [SerializeField]
+    private int[] indexOfObjectsAffected;
 
     [SerializeField]
     private bool dissapearInsteadAppear;
+
 
     private bool stateObjects;
 
@@ -16,16 +23,22 @@ public class ActiveItems : Interactable
     private void Start()
     {
         stateObjects = !dissapearInsteadAppear;
-
-        ActivateOrDeactivate();
+        ActivateOrDeactivate(indexOfObjectsAffected);
 
     }
 
-    public void ActivateOrDeactivate(){
+    public void ActivateOrDeactivate(int[] indexes){
+        int j = 0;
         stateObjects = !stateObjects;
 
         for(int i = 0; i < objectsAffected.Length; i++){
-            objectsAffected[i].SetActive(stateObjects);  
+            if(!notAffectAllObjects || (j <= indexes.Length-1 && (indexes[j] == i))){
+                objectsAffected[i].SetActive(stateObjects);
+                j++;   
+            }else{
+                objectsAffected[i].SetActive(!stateObjects);
+            }
+            
         }
     }
 
@@ -35,7 +48,7 @@ public class ActiveItems : Interactable
         //Enemy Hitted
         if(collision.gameObject.CompareTag("Player"))
         {
-            ActivateOrDeactivate();
+            ActivateOrDeactivate(indexOfObjectsAffected);
             Destroy(gameObject, 0.2f);
         }
     }
