@@ -21,6 +21,9 @@ public class ImportantObjectsRecognizer : Interactable
     private string decisionResponse;
 
     [SerializeField]
+    private bool notAffectAllAtStart;
+
+    [SerializeField]
     private int DecisionIndex;
 
     private DecisionController decisionController;
@@ -31,7 +34,7 @@ public class ImportantObjectsRecognizer : Interactable
     private void Start()
     {
         stateObjects = !dissapearInsteadAppear;
-        int[] array = null;
+        int[] array = notAffectAllAtStart ? indexOfObjectsAffected : null;
 
         ActivateOrDeactivate(array);
 

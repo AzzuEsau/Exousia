@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stats : MonoBehaviour
+public class StatsChecker : MonoBehaviour
 {
     [SerializeField]
     private bool karma;
@@ -45,7 +45,7 @@ public class Stats : MonoBehaviour
         moneyManager = FindObjectOfType<MoneyManager>();
 
         stateObjects = dissapearInsteadAppear;
-        ActivateOrDeactivate(null);
+        ActivateOrDeactivate(indexOfObjectsAffected);
         
     }
 
@@ -53,17 +53,12 @@ public class Stats : MonoBehaviour
         int j=0;
 
         for(int i = 0; i < objectsAffected.Length; i++){
-            if(indexes == null){
+            if(j <= indexes.Length-1 && (indexes[j] == i)){
                 objectsAffected[i].SetActive(stateObjects);
+                j++;   
             }else{
-                if(j <= indexes.Length-1 && (indexes[j] == i)){
-                    if(requirementsCompleted){
-                        objectsAffected[i].SetActive(stateObjects);
-                    }
-                    j++;   
-                }else if(requirementsCompleted){
-                    objectsAffected[i].SetActive(stateObjects);
-                }
+                Debug.Log("llego");
+                objectsAffected[i].SetActive(!stateObjects);
             }
         }
     }
