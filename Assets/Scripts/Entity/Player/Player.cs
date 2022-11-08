@@ -94,6 +94,11 @@ public class Player : Entity
                 npcInteraction.Interact();
             }
         }
+        else if (collision.gameObject.CompareTag("Traveler") && interactInput)
+        {
+            TravelerInteractable traveler = collision.GetComponent<TravelerInteractable>();
+            traveler.Interact();
+        }
     }
 
     public override bool OnHurt(float damage, GameObject source)
