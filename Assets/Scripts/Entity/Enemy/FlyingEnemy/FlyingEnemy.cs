@@ -62,7 +62,6 @@ public class FlyingEnemy : Enemy
     }
     #endregion
 
-
     protected IEnumerator fly(float seconds, float direction)
     {
         isSuspending = true;

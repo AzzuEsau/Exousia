@@ -10,7 +10,8 @@ public class Enemy : Entity
         [SerializeField] protected Player player;
         [SerializeField] protected DroppableItems droppableItem;
         private bool hittedT = false;
-        
+        private KillsManager kills;
+
 
     protected void OnCollisionEnter2D(Collision2D other) 
     {
@@ -48,6 +49,30 @@ public class Enemy : Entity
     protected virtual bool IsDetected()
     {
         return Distance() < detectionRaius;
+    }
+
+    public override bool OnHurt(float damage, GameObject source)
+    { 
+        
+        if(life > 0 )
+        {
+            DecreaseLife(damage);
+            if(life == 0)
+            {
+                if(droppableItem != null){
+                    droppableItem.Drop(gameObject.transform.position);
+                }
+                GameManager _gameManager = FindObjectOfType<GameManager>();
+                kills = _gameManager.GetKillsManager();
+                kills.SetKill(1);
+                Destroy(gameObject,0.2f);
+                return true;
+            }
+
+            StartCoroutine(KnockBack(.5f, source));
+            return true;
+        }
+        return false;
     }
 
     protected virtual float Distance()

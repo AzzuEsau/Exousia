@@ -8,8 +8,6 @@ public class GroundedEnemy : Enemy
     protected Animator animator;
     private Rigidbody2D rgBody;
 
-    private KillsManager kills;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -43,30 +41,6 @@ public class GroundedEnemy : Enemy
     protected virtual void Jump()
     {
         
-    }
-
-    public override bool OnHurt(float damage, GameObject source)
-    { 
-        
-        if(life > 0 )
-        {
-            DecreaseLife(damage);
-            if(life == 0)
-            {
-                if(droppableItem != null){
-                    droppableItem.Drop(gameObject.transform.position);
-                }
-                GameManager _gameManager = FindObjectOfType<GameManager>();
-                kills = _gameManager.GetKillsManager();
-                kills.SetKill(1);
-                Destroy(gameObject,0.2f);
-                return true;
-            }
-
-            StartCoroutine(KnockBack(.5f, source));
-            return true;
-        }
-        return false;
     }
 
     #region Run
