@@ -3,106 +3,109 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class DecisionTree : MonoBehaviour
 {
     [SerializeField]
     private DecisionList Decision;
-
-
-    class Node
+    class Tree
     {
-        public DecisionList info;
-        public Node left, right;
-    }
-    Node root;
-
-    public DecisionTree() 
-    {
-        root=null;
-    }
-    
-    public void Insert (DecisionList info)
-    {
-        Node newNode;
-        newNode = new Node ();
-        newNode.info = info;
-        newNode.left = null;
-        newNode.right = null;
-        if (root == null)
-            root = newNode;
-        else
+        class Node
         {
-            Node before = null, rebuild;
-            rebuild = root;
-            while (rebuild != null)
-            {
-                before = rebuild;
-                if (rebuild.info.response == "yes")
-                    rebuild = rebuild.left;
-                else
-                    rebuild = rebuild.right;
-            }
-            if (info.response == "yes")
-                before.left = newNode;
+            public DecisionList info;
+            public Node left, right;
+        }
+        Node root;
+
+        public Tree() 
+        {
+            root=null;
+        }
+        
+        public void Insert (DecisionList info)
+        {
+            Node newNode;
+            newNode = new Node ();
+            newNode.info = info;
+            newNode.left = null;
+            newNode.right = null;
+            if (root == null)
+                root = newNode;
             else
-                before.right = newNode;
+            {
+                Node before = null, rebuild;
+                rebuild = root;
+                while (rebuild != null)
+                {
+                    before = rebuild;
+                    if (rebuild.info.response == "yes")
+                        rebuild = rebuild.left;
+                    else
+                        rebuild = rebuild.right;
+                }
+                if (info.response == "yes")
+                    before.left = newNode;
+                else
+                    before.right = newNode;
+            }
         }
-    }
 
 
-    private void PrintPrev (Node rebuild)
-    {
-        if (rebuild != null)
+        private void PrintPrev (Node rebuild)
         {
-            Debug.Log(JsonUtility.ToJson(rebuild.info));
-            PrintPrev (rebuild.left);
-            PrintPrev (rebuild.right);
+            if (rebuild != null)
+            {
+                Debug.Log(JsonUtility.ToJson(rebuild.info));
+                PrintPrev (rebuild.left);
+                PrintPrev (rebuild.right);
+            }
         }
-    }
 
-    public void PrintPrev ()
-    {
-        PrintPrev (root);
-        Debug.Log("Line");
-    }
-
-    private void printInside (Node rebuild)
-    {
-        if (rebuild != null)
-        {    
-            printInside (rebuild.left);
-            Debug.Log(JsonUtility.ToJson(rebuild.info));
-            printInside (rebuild.right);
-        }
-    }
-
-    public void printInside ()
-    {
-        printInside (root);
-        Debug.Log("Line");
-    }
-
-
-    private void printNext (Node rebuild)
-    {
-        if (rebuild != null)
+        public void PrintPrev ()
         {
-            printNext (rebuild.left);
-            printNext (rebuild.right);
-            Debug.Log(JsonUtility.ToJson(rebuild.info));
+            PrintPrev (root);
+            Debug.Log("Line");
+        }
+
+        private void printInside (Node rebuild)
+        {
+            if (rebuild != null)
+            {    
+                printInside (rebuild.left);
+                Debug.Log(JsonUtility.ToJson(rebuild.info));
+                printInside (rebuild.right);
+            }
+        }
+
+        public void printInside ()
+        {
+            printInside (root);
+            Debug.Log("Line");
+        }
+
+
+        private void printNext (Node rebuild)
+        {
+            if (rebuild != null)
+            {
+                printNext (rebuild.left);
+                printNext (rebuild.right);
+                Debug.Log(JsonUtility.ToJson(rebuild.info));
+            }
+        }
+
+
+        public void printNext ()
+        {
+            printNext (root);
+            Debug.Log("Line");
         }
     }
 
-
-    public void printNext ()
-    {
-        printNext (root);
-        Debug.Log("Line");
-    }
 
     public void Start()
     {
-        DecisionTree tree = new DecisionTree();
+        Tree tree = new Tree();
         FakeD1Initialize();
         tree.Insert(Decision);
         tree.Insert(Decision);

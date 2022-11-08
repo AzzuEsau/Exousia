@@ -40,7 +40,10 @@ public class Entity : MonoBehaviour
             return true;
         }
         else
+        {
             Destroy(gameObject, 0.2f);
+        }
+            
 
         return false;
     }

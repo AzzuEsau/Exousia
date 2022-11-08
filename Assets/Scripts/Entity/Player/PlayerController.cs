@@ -11,11 +11,13 @@ public class PlayerController : MonoBehaviour{
             [Header ("Movement")]
                 protected float movementSpeed;
                 private bool isRunning;
+                private bool isAttacking;
 
             [Header ("Jump")]
                 protected float jumpForce = 15f;
                 protected LayerMask groundLayer;
                 protected BoxCollider2D floorCollider;
+                protected BoxCollider2D attackCollider;
                 private bool isGrounded;
 
             [Header ("Input")]
@@ -49,11 +51,12 @@ public class PlayerController : MonoBehaviour{
             protected static float waitTime = 0.12f;
     #endregion
 
-    public void AssignElements(ref Rigidbody2D rgBody, ref LayerMask groundLayer, ref BoxCollider2D floorCollider, float movementSpeed)
+    public void AssignElements(ref Rigidbody2D rgBody, ref LayerMask groundLayer, ref BoxCollider2D floorCollider, ref BoxCollider2D attackCollider, float movementSpeed)
     {
         this.rgBody = rgBody;
         this.groundLayer = groundLayer;
         this.floorCollider = floorCollider;
+        this.attackCollider = attackCollider;
         this.movementSpeed = movementSpeed;
 
         gravityScale = rgBody.gravityScale;
@@ -63,18 +66,20 @@ public class PlayerController : MonoBehaviour{
         waitJumpBufferTime = waitTime;
     }
 
-    public void Execute(bool isAlive, bool isGrounded, bool isRunning)
+    public void Execute(bool isAlive, bool isGrounded, bool isRunning, bool isAttacking)
     {
         if(!isAlive)
             return;
 
         this.isGrounded = isGrounded;
         this.isRunning = isRunning;
+        this.isAttacking = isAttacking;
 
         Run();
         Gravity();
         ResetJumps();
         Jump();
+        Attack();
     }
 
     #region Run
@@ -87,15 +92,20 @@ public class PlayerController : MonoBehaviour{
         public void OnJump(InputAction.CallbackContext value) => jumpingInput = value.ReadValueAsButton();
     #endregion
 
-    private void Run()
-    {
-        // Use the values getted in the function OnMove from the Input System
-        Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
-        rgBody.velocity = playerVelocity;
+        private void Run()
+        {
+            // Use the values getted in the function OnMove from the Input System
+            Vector2 playerVelocity = new Vector2(moveInput.x * this.movementSpeed, rgBody.velocity.y);
+            rgBody.velocity = playerVelocity;
 
-        // Activate the animation changin the boolean
-        animator.SetBool("isRunning", isRunning);
-    }
+            // Activate the animation changin the boolean
+            animator.SetBool("isRunning", isRunning);
+        }
+
+        public float moveInputX()
+        {
+            return moveInput.x;
+        }
     #endregion
 
 
@@ -135,6 +145,16 @@ public class PlayerController : MonoBehaviour{
                 rgBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             }
         }
+    #endregion
+
+    #region ATTACK
+
+    private void Attack()
+    {
+        animator.SetBool("isAttacking", isAttacking);
+        
+    }
+
     #endregion
 
 

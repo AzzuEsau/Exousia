@@ -26,5 +26,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PressKey/PressKey.unity
     guid: ff8a47b576b3de2478b93787c80ec40d
+  - enabled: 1
+    path: Assets/Scenes/Olympus.unity
+    guid: 0b9651dace68a3d488bd16cfef23ec09
+  - enabled: 1
+    path: Assets/Scenes/Level/level_0.unity
+    guid: 3e5367cd28cd8bf4da2467331bab86b7
+  - enabled: 1
+    path: Assets/Scenes/GameOver/GameOver.unity
+    guid: 27bc062535228ed41b7fdce01f8e15bd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0acea81e8e7b31d46827928e5819e674, type: 2}

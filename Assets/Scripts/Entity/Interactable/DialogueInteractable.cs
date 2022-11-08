@@ -11,32 +11,48 @@ public class DialogueInteractable : Interactable
     private string[] _dialogue;
 
     [SerializeField]
-    int decisionInArr;
+    private int decisionInArr;
     [SerializeField]
-    int decisionIndex;
+    private int decisionIndex;
     [SerializeField]
-    string nameDecision;
+    private string nameDecision;
     [SerializeField]
-    string parentDecision;
+    private string parentDecision;
+    [SerializeField]
+    private GameObject bubble;
+
+    private int dialogueID;
     
-    private DialogueManager _dialogueManager; // *******************
+    private DialogueManager _dialogueManager;
 
     private void Start()
     {
-        _dialogueManager = FindObjectOfType<DialogueManager>(); //Sirve para singletons
+        _dialogueManager = FindObjectOfType<DialogueManager>();
         if (_dialogueManager == null)
         {
             Debug.LogWarning("No se encontro un DialogueManager en la escena");
+        }
+
+        if(bubble != null)
+            bubble.SetActive(true);
+    }
+
+    private void Update(){
+        dialogueID = _dialogueManager.GetDialogueID();
+        if(bubble != null && dialogueID == _dialogue.Length -1){
+            bubble.SetActive(true);
         }
     }
 
 
     public override void Interact()
     {
-        // base.Interact();
         
         _dialogueManager.SetDialogue(_name, _dialogue, decisionInArr, decisionIndex, nameDecision, parentDecision);
         //Usar un manejador de di�logos para mostrar los di�logos
+        if(bubble != null){
+            bubble.SetActive(false);
+        }
     }
 
 }

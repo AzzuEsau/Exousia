@@ -35,8 +35,9 @@ public class DialogueManager : MonoBehaviour
     {
         GameManager _gameManager = FindObjectOfType<GameManager>();
         decisionController = _gameManager.GetDecisionController();
-        dialogueText = dialoguePanel.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
-        nameText = dialoguePanel.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
+        
+        nameText = dialoguePanel.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>();
+        dialogueText = dialoguePanel.transform.GetChild(2).GetComponentInChildren<TextMeshProUGUI>();
 
         //We get the third child of dialogue panel (Button)
         continueGameObj = dialoguePanel.transform.GetChild(3).gameObject;
@@ -61,6 +62,8 @@ public class DialogueManager : MonoBehaviour
         declineButton.onClick.AddListener(delegate { Reject(); });
 
     }
+
+    public int GetDialogueID(){ return dialogueID; }
 
     public void SetDialogue(string nameNPC, string[] dialogue, int decisionInArr, int decisionIndex, string nameDecision, string parentDecision)
     {
@@ -140,7 +143,6 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator SecondsOfDecision(){
         while(decisionActive){
-            Debug.Log("hoo");
             yield return new WaitForSeconds(1);
             seconds++;
         }

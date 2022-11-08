@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : Entity
 {
@@ -11,10 +12,12 @@ public class Player : Entity
             [SerializeField] protected PlayerInput playerInput;
             [SerializeField] protected Transform trans;
             [SerializeField] protected Rigidbody2D rgBody;
+            [SerializeField] protected int maxLife = 6;
 
     [Header ("Colliders")]
             [SerializeField] protected CapsuleCollider2D mainCollider;
             [SerializeField] protected BoxCollider2D floorColliderDetector;
+            [SerializeField] protected BoxCollider2D attackCollider;
 
         [Header ("Render")]
             [SerializeField] protected SpriteRenderer render;
@@ -28,7 +31,9 @@ public class Player : Entity
             [SerializeField] protected bool isGrounded;
             [SerializeField] protected bool isRunning;
             [SerializeField] protected bool interactInput;
+            [SerializeField] protected bool attackInput, isAttacking;
             [SerializeField] protected LifeBar lifeBar;
+            [SerializeField] private float damage;
 
     #region ATTRIBUTES
 
@@ -45,7 +50,7 @@ public class Player : Entity
     void Start()
     {
         this.movementSpeed = 7f;
-        playerController.AssignElements(ref rgBody, ref groundLayer, ref floorColliderDetector, movementSpeed);
+        playerController.AssignElements(ref rgBody, ref groundLayer, ref floorColliderDetector,  ref attackCollider, movementSpeed);
         //playerRenderer.AssignElements(ref isGrounded);
     }
 
@@ -56,18 +61,21 @@ public class Player : Entity
         FlipSprite();
         isGrounded = IsGrounded();
         isRunning = IsRunning();
-        playerController.Execute(true, isGrounded, isRunning);
+        isAttacking = attackInput;
+        playerController.Execute(life > 0, isGrounded, isRunning, isAttacking);
     }
 
     
     public void OnInteract(InputAction.CallbackContext value) => interactInput = value.ReadValueAsButton();
+    public void OnAttack(InputAction.CallbackContext value) => attackInput = value.ReadValueAsButton();
 
     //make the movement positive and compare it with 0 Epsilon
     private bool IsRunning() => Mathf.Abs(rgBody.velocity.x) > Mathf.Epsilon;
+    
 
     private void FlipSprite()
     {
-        if (IsRunning())
+        if (IsRunning() && playerController.moveInputX() != 0)
         {
             //Rotate de player using sign wich retur if the value is positive or negative
             transform.localScale = new Vector2(Mathf.Sign(rgBody.velocity.x), 1f);
@@ -86,6 +94,25 @@ public class Player : Entity
                 npcInteraction.Interact();
             }
         }
+    }
+
+    public override bool OnHurt(float damage, GameObject source)
+    {
+        if(life > 0 )
+        {
+            DecreaseLife(damage);
+            StartCoroutine(KnockBack(.5f, source));
+            if(life == 0)
+            {
+                UpdateLife();
+                // Changes the scene to the "Game over" screen
+                SceneManager.LoadScene("GameOver");
+                Destroy(gameObject, 0.2f);
+            }
+        
+            return true;
+        }
+        return false;
     }
 
     #region INTERACTION
@@ -108,7 +135,7 @@ public class Player : Entity
             }
 
         }
-}
+    }
     #endregion
 
     #region COLLISION_DETECTION
@@ -128,5 +155,7 @@ public class Player : Entity
         return this.trans;
     }
 
+    public bool IsAttacking() => isAttacking;
 
+    public void increaselife(int increase) => this.life = this.life + increase > maxLife ? maxLife : this.life + increase;
 }
