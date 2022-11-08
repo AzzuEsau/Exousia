@@ -19,10 +19,6 @@ public class ImportantObjectsManager : MonoBehaviour
             {"RippleHook",false} ,
         };
 
-
-
-   
-
     // the dictionary set false the appearence of object in the interface of important objects until it be true
     void Update(){
         Trident.SetActive(ImportantObjects["Trident"]);
