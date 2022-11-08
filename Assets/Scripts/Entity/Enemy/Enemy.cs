@@ -8,6 +8,7 @@ public class Enemy : Entity
         [SerializeField][Range(1, 10)] protected float detectionRaius;
         [SerializeField] protected LayerMask playerLayer;
         [SerializeField] protected Player player;
+        [SerializeField] protected DroppableItems droppableItem;
         private bool hittedT = false;
         private KillsManager kills;
 
@@ -66,7 +67,9 @@ public class Enemy : Entity
                 kills = _gameManager.GetKillsManager();
                 kills.SetKill(1);
                 Destroy(gameObject,0.2f);
-                
+                if(droppableItem != null){
+                    droppableItem.Drop(gameObject.transform.position);
+                }
                 return true;
             }
 
