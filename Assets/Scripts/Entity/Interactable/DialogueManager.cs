@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     int seconds;
     bool decisionActive;
     string response;
+    bool isDecision;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +66,7 @@ public class DialogueManager : MonoBehaviour
 
     public int GetDialogueID(){ return dialogueID; }
 
-    public void SetDialogue(string nameNPC, string[] dialogue, int decisionInArr, int decisionIndex, string nameDecision, string parentDecision)
+    public void SetDialogue(string nameNPC, string[] dialogue, int decisionInArr, int decisionIndex, string nameDecision, string parentDecision, bool isDecision)
     {
         nameText.text = nameNPC;
         dialogueList = new List<string>(dialogue.Length);
@@ -77,6 +78,7 @@ public class DialogueManager : MonoBehaviour
         this.nameDecision = nameDecision;
         this.decisionIndex = decisionIndex;
         this.parentDecision = parentDecision;
+        this.isDecision = isDecision;
         
 
         ShowDialogue();
@@ -100,7 +102,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ContinueDialogue()
     {
-        if (dialogueID == decisionInArr){
+        if (isDecision && dialogueID == decisionInArr){
             decisionController.SetDecision(decisionIndex, nameDecision, seconds * 1000, response, parentDecision);
             decisionActive = false;
         }
@@ -116,7 +118,7 @@ public class DialogueManager : MonoBehaviour
             dialogueID++;
             ShowDialogue();
         }
-        else if (dialogueID == decisionInArr - 1){ // Uno antes de la decision
+        else if (isDecision && dialogueID == decisionInArr - 1){ // Uno antes de la decision
             selectButtonsActive("decision");
             seconds = 0;
             decisionActive = true;

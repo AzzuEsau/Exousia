@@ -29,8 +29,7 @@ public class KillsManager : MonoBehaviour
 
     public void SetKill(int _kill)
     {
-        kill = _kill;
-        killText.text = kill.ToString();
+        kill += _kill;
     }
 
     public int GetKill()

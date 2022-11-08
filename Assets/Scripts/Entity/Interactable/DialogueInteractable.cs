@@ -9,6 +9,8 @@ public class DialogueInteractable : Interactable
     private string _name;
     [SerializeField]
     private string[] _dialogue;
+    [SerializeField]
+    private bool isDecision;
 
     [SerializeField]
     private int decisionInArr;
@@ -48,7 +50,7 @@ public class DialogueInteractable : Interactable
     public override void Interact()
     {
         
-        _dialogueManager.SetDialogue(_name, _dialogue, decisionInArr, decisionIndex, nameDecision, parentDecision);
+        _dialogueManager.SetDialogue(_name, _dialogue, decisionInArr, decisionIndex, nameDecision, parentDecision, isDecision);
         //Usar un manejador de di�logos para mostrar los di�logos
         if(bubble != null){
             bubble.SetActive(false);
