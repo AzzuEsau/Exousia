@@ -34,9 +34,9 @@ public class Enemy : Entity
     }
 
     protected IEnumerator HurtInSeconds(Entity entity, float damage){
+            Hurt(entity, damage);
             yield return new WaitForSeconds(1);
             hittedT = false;
-            Hurt(entity, damage);
     }
 
     protected virtual void Hurt(Entity entity, float damage)
@@ -63,13 +63,13 @@ public class Enemy : Entity
             DecreaseLife(damage);
             if(life == 0)
             {
+                if(droppableItem != null){
+                    droppableItem.Drop(gameObject.transform.position);
+                }
                 GameManager _gameManager = FindObjectOfType<GameManager>();
                 kills = _gameManager.GetKillsManager();
                 kills.SetKill(1);
                 Destroy(gameObject,0.2f);
-                if(droppableItem != null){
-                    droppableItem.Drop(gameObject.transform.position);
-                }
                 return true;
             }
 

@@ -21,14 +21,7 @@ public class ImportantObjectsManager : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Trident = this.gameObject.transform.GetChild(0).gameObject;
-        Glasses = this.gameObject.transform.GetChild(1).gameObject;
-        GoldenApple = this.gameObject.transform.GetChild(2).gameObject;
-        RippleHook = this.gameObject.transform.GetChild(3).gameObject;
-    }
+   
 
     // the dictionary set false the appearence of object in the interface of important objects until it be true
     void Update(){
