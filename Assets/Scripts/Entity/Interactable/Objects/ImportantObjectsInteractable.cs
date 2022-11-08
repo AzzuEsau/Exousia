@@ -19,21 +19,27 @@ public class ImportantObjectsInteractable : Interactable
 
     [SerializeField]
     private string ParentDecision;
-    
-    private DecisionController decisionController;
 
+    [Header("Privado")]
+    [SerializeField]
+    private DecisionController decisionController;
+    [SerializeField]
     private ImportantObjectsManager _importantObjectsManager;
+
 
     private void Start()
     {
         _importantObjectsManager = FindObjectOfType<ImportantObjectsManager>();
-
         GameManager _gameManager = FindObjectOfType<GameManager>();
         decisionController = _gameManager.GetDecisionController();
 
+        if(decisionController == null)
+            decisionController = FindObjectOfType<DecisionController>();
+
+
         if (_importantObjectsManager == null)
         {
-            Debug.LogWarning("No se encontro un ImportantObjectsManager en la escena");
+            Debug.LogWarning(gameObject.name + " No se encontro un ImportantObjectsManager en la escena");
         }
 
     }

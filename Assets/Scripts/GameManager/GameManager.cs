@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class GameManager : GenericSingletonClass<GameManager>
 {
-
+    [SerializeField]
     private DecisionController decisionController;
+    [SerializeField]
     private KillsManager killsManager;
 
     private string _notFoundMessage = "El manejador de juego no encontro un ";
     private string _notGotMessage = "El manejador de juego no tiene un ";
 
 
-    void Start()
-    {
+    private void Start() {
         decisionController = FindDecisionController();
         killsManager = FindKillsManager();
     }
+
 
     public DecisionController FindDecisionController()
     {
@@ -31,13 +32,11 @@ public class GameManager : GenericSingletonClass<GameManager>
 
     public DecisionController GetDecisionController()
     {
-        DecisionController compVar = decisionController;
-        string compName = "Decision Controller";
-        if (compVar == null)
+        if (decisionController == null)
         {
-            Debug.LogWarning(_notGotMessage + compName);
+            Debug.LogWarning(_notGotMessage + "Decision Controller");
         }
-        return compVar;
+        return decisionController;
     }
 
      public KillsManager FindKillsManager()

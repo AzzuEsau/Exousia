@@ -33,7 +33,7 @@ public class ActiveItems : Interactable
     {
         Debug.Log("Hola");
         //Enemy Hitted
-        if(collision.gameObject.CompareTag("HitAreaPlayer"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             ActivateOrDeactivate();
             Destroy(gameObject, 0.2f);
