@@ -63,6 +63,8 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+    public int GetDialogueID(){ return dialogueID; }
+
     public void SetDialogue(string nameNPC, string[] dialogue, int decisionInArr, int decisionIndex, string nameDecision, string parentDecision)
     {
         nameText.text = nameNPC;

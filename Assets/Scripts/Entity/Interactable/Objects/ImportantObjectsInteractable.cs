@@ -19,17 +19,17 @@ public class ImportantObjectsInteractable : Interactable
 
     [SerializeField]
     private string ParentDecision;
-
+    
     private DecisionController decisionController;
 
     private ImportantObjectsManager _importantObjectsManager;
 
     private void Start()
     {
+        _importantObjectsManager = FindObjectOfType<ImportantObjectsManager>();
+
         GameManager _gameManager = FindObjectOfType<GameManager>();
         decisionController = _gameManager.GetDecisionController();
-
-        _importantObjectsManager = FindObjectOfType<ImportantObjectsManager>();
 
         if (_importantObjectsManager == null)
         {
