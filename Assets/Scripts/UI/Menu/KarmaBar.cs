@@ -32,4 +32,9 @@ public class KarmaBar : MonoBehaviour
     {
         newKarma = newKarma + amount;
     }
+
+    public float getKarma()
+    {
+        return karma;
+    }
 }
