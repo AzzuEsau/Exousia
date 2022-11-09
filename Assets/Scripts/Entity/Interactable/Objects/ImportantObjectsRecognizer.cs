@@ -26,8 +26,9 @@ public class ImportantObjectsRecognizer : Interactable
     [SerializeField]
     private int DecisionIndex;
 
+    [SerializeField]
     private DecisionController decisionController;
-
+    [SerializeField]
     private ImportantObjectsManager _importantObjectsManager;
 
 
@@ -78,7 +79,7 @@ public class ImportantObjectsRecognizer : Interactable
         while(decisionWasntTaked){
             decisionName = decisionController.GetDecisionName(DecisionIndex);
             decisionResponse = decisionController.GetDecisionResponse(DecisionIndex);
-            decisionWasntTaked = (decisionName == null);
+            decisionWasntTaked = (decisionName == null || decisionName == "");
             yield return new WaitForSeconds(2);
         }
         ActivateOrDeactivate(indexOfObjectsAffected);
