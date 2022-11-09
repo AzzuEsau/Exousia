@@ -18522,6 +18522,7 @@ GameObject:
   - component: {fileID: 1764841423}
   - component: {fileID: 1764841422}
   - component: {fileID: 1764841421}
+  - component: {fileID: 1764841424}
   - component: {fileID: 1764841420}
   m_Layer: 0
   m_Name: Hera
@@ -18554,7 +18555,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764841418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a20017bb4b6985240abd457a16f3c4cf, type: 3}
   m_Name: 
@@ -18632,6 +18633,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
+--- !u!114 &1764841424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764841418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b54ccf796effff439d2bfc47f0a532c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Hera
+  _dialogue:
+  - "No puedo m\xE1s con las infidelidades de Zeus, sus actos no son dignos de un
+    rey de dioses."
+  - Es por esto, Poseidon, que requiero de tu ayuda para poder contener a Zeus.
+  - "Primero ser\xE1 necesario vencer a Aquiles para liberar el tridente y con ello,
+    te vuelvas m\xE1s fuerte."
+  - "As\xED que ve y completa la tarea que te encomiendo."
+  isDecision: 1
+  decisionInArr: 1
+  decisionIndex: 1
+  nameDecision: Talked
+  parentDecision: 
+  bubble: {fileID: 1216024121}
 --- !u!1 &1765980673
 GameObject:
   m_ObjectHideFlags: 3
