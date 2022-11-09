@@ -1501,6 +1501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69baa05045b867449930dff47b39327d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castle: {fileID: 8300000, guid: 8faf76946e892444eb2618c60596dd31, type: 3}
+  battle: {fileID: 8300000, guid: 45ce4a42db0eb124ab880f415ae11794, type: 3}
+  olimpo: {fileID: 8300000, guid: e3824cee61f9e964cad46d5f92b17e8a, type: 3}
 --- !u!4 &329763915
 Transform:
   m_ObjectHideFlags: 0
