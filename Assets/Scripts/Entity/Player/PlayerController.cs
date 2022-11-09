@@ -71,7 +71,10 @@ public class PlayerController : MonoBehaviour{
     public void Execute(bool isAlive, bool isGrounded, bool isRunning, bool isAttacking)
     {
         if(!isAlive || dialoge.activeInHierarchy)
+        {
+            rgBody.velocity = Vector2.zero;
             return;
+        }
 
         this.isGrounded = isGrounded;
         this.isRunning = isRunning;
