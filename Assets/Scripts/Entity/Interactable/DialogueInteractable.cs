@@ -6,26 +6,28 @@ public class DialogueInteractable : Interactable
 {
 
     [SerializeField]
-    private string _name;
+    protected string _name;
     [SerializeField]
-    private string[] _dialogue;
+    protected string[] _dialogue;
     [SerializeField]
-    private bool isDecision;
+    protected bool isDecision;
 
     [SerializeField]
-    private int decisionInArr;
+    protected int decisionInArr;
     [SerializeField]
-    private int decisionIndex;
+    protected int decisionIndex;
     [SerializeField]
-    private string nameDecision;
+    protected string nameDecision;
     [SerializeField]
-    private string parentDecision;
+    protected string parentDecision;
     [SerializeField]
-    private GameObject bubble;
+    protected GameObject bubble;
 
-    private int dialogueID;
+    protected int dialogueID;
     
-    private DialogueManager _dialogueManager;
+    protected DialogueManager _dialogueManager;
+
+    protected bool alreadyAnwer;
 
     private void Start()
     {
@@ -35,6 +37,7 @@ public class DialogueInteractable : Interactable
             Debug.LogWarning("No se encontro un DialogueManager en la escena");
         }
 
+        alreadyAnwer = false;
         if(bubble != null)
             bubble.SetActive(true);
     }
@@ -42,19 +45,23 @@ public class DialogueInteractable : Interactable
     private void Update(){
         dialogueID = _dialogueManager.GetDialogueID();
         if(bubble != null && dialogueID == _dialogue.Length -1){
-            bubble.SetActive(true);
+            bubble.SetActive(!alreadyAnwer);
         }
     }
 
 
     public override void Interact()
     {
-        
+        if(alreadyAnwer)
+            return;
+
         _dialogueManager.SetDialogue(_name, _dialogue, decisionInArr, decisionIndex, nameDecision, parentDecision, isDecision);
         //Usar un manejador de di�logos para mostrar los di�logos
         if(bubble != null){
             bubble.SetActive(false);
         }
+
+        alreadyAnwer = true;
     }
 
 }

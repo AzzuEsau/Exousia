@@ -5,31 +5,31 @@ using UnityEngine;
 public class ImportantObjectsRecognizer : Interactable
 {
     [SerializeField]
-    private GameObject[] objectsAffected;
+    protected GameObject[] objectsAffected;
 
     [SerializeField]
-    private int[] indexOfObjectsAffected;
+    protected int[] indexOfObjectsAffected;
 
     [SerializeField]
-    private bool dissapearInsteadAppear;
+    protected bool dissapearInsteadAppear;
 
-    private bool stateObjects;
+    protected bool stateObjects;
 
-    private bool decisionWasntTaked = true;
+    protected bool decisionWasntTaked = true;
 
-    private string decisionName;
-    private string decisionResponse;
-
-    [SerializeField]
-    private bool notAffectAllAtStart;
+    protected string decisionName;
+    protected string decisionResponse;
 
     [SerializeField]
-    private int DecisionIndex;
+    protected bool notAffectAllAtStart;
 
     [SerializeField]
-    private DecisionController decisionController;
+    protected int DecisionIndex;
+
     [SerializeField]
-    private ImportantObjectsManager _importantObjectsManager;
+    protected DecisionController decisionController;
+    [SerializeField]
+    protected ImportantObjectsManager _importantObjectsManager;
 
 
     private void Start()
