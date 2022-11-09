@@ -41,8 +41,14 @@ public class Login : MonoBehaviour
         CheckUser(mL_emailInput.text, mL_passwordInput.text, delegate(Response response){
             if(response.error == ""){
                 userString = response.player.Replace("'","\"");
-                PlayerPrefs.SetString("User", userString);
+                
                 user = JsonUtility.FromJson<PlayerUser>(userString);
+
+                PlayerPrefs.SetInt("userID", user.id);
+                PlayerPrefs.SetString("userName", user.user);
+                PlayerPrefs.SetString("userToken", user.token);
+
+
                 SceneManager.LoadScene("PressKey");
             }
             mL_messageLabel.text = response.message;
@@ -87,7 +93,7 @@ public class Login : MonoBehaviour
 
     public IEnumerator CO_CreateUser(string userName, string email, string password, Action<Response> response){
         WWWForm form = new WWWForm();
-        form.AddField("id",10);
+        // form.AddField("id",10);
         form.AddField("user",userName);
         form.AddField("email",email);
         form.AddField("password",password);
@@ -140,7 +146,7 @@ public class Login : MonoBehaviour
     {
         
     }
-}
+    
 
     public class Form{
         public List<string> id;
@@ -168,3 +174,5 @@ public class Login : MonoBehaviour
         public string error   = "";
         
     }
+
+}

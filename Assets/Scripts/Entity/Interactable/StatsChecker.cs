@@ -75,12 +75,12 @@ public class StatsChecker : MonoBehaviour
         
         if(kills){
             killsCount = killsManager.GetKill();
-            requirementsCompleted = (killsCount >= killsAmount);
+            requirementsCompleted = requirementsCompleted && (killsCount >= killsAmount);
         }
 
         if(money){
             moneyCount = moneyManager.GetMoney();
-            requirementsCompleted = (moneyCount >= moneyAmount);
+            requirementsCompleted = requirementsCompleted && (moneyCount >= moneyAmount);
         }
 
         if(requirementsCompleted){
