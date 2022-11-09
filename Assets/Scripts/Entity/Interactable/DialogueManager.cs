@@ -30,6 +30,8 @@ public class DialogueManager : MonoBehaviour
     bool decisionActive;
     string response;
     bool isDecision;
+    protected bool oneAnswer = false;
+    protected bool answerType;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +87,14 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
     }
 
+    public void SetDialogueWithOneCondition(string nameNPC, string[] dialogue, int decisionInArr, int decisionIndex, string nameDecision, string parentDecision, bool isDecision, bool justAcepatble)
+    {
+        oneAnswer = true;
+        answerType = justAcepatble;
+        SetDialogue(nameNPC, dialogue, decisionInArr, decisionIndex, nameDecision, parentDecision, isDecision);
+    }
+    
+
     public void ShowDialogue()
     {
         dialogueText.text = dialogueList[dialogueID];
@@ -114,7 +124,17 @@ public class DialogueManager : MonoBehaviour
         }
         else if (dialogueID == dialogueList.Count - 2)//Uno antes de terminar
         {
+            oneAnswer = false;
             selectButtonsActive("exit");
+            dialogueID++;
+            ShowDialogue();
+        }
+        else if (isDecision && oneAnswer && dialogueID == decisionInArr - 1){ // Uno antes de la decision
+            selectButtonsActive("x");
+            selectoneOption(answerType ? "aceptable" : "decline");
+            seconds = 0;
+            decisionActive = true;
+            StartCoroutine(SecondsOfDecision());
             dialogueID++;
             ShowDialogue();
         }
@@ -140,6 +160,11 @@ public class DialogueManager : MonoBehaviour
         exitGameObj.SetActive(config == "exit");
         acceptGameObj.SetActive(config == "decision");
         declineGameObj.SetActive(config == "decision");
+    }
+
+    private void selectoneOption(string config){
+        acceptGameObj.SetActive(config == "aceptable");
+        declineGameObj.SetActive(config == "decline");
     }
 
 
